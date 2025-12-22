@@ -1,0 +1,307 @@
+import { useState, useRef } from 'react';
+import { Play, Music, Video, Mic, FileText } from 'lucide-react';
+
+interface TrendingItem {
+  id: string;
+  year: string;
+  title: string;
+  description: string;
+  type: 'music' | 'video' | 'podcast' | 'article';
+  thumbnail: string;
+  mediaUrl: string;
+  stats?: string;
+}
+
+const trendingItems: TrendingItem[] = [
+  {
+    id: '1',
+    year: '1982',
+    title: 'Thriller',
+    description: 'The best-selling album of all time',
+    type: 'music',
+    thumbnail: 'https://i.pinimg.com/736x/26/a6/4b/26a64bdc20dd22ea7c795b53ac1d33d9.jpg',
+    mediaUrl: 'https://www.youtube.com/embed/sOnqjkJTMaA',
+    stats: '70M+ Albums Sold',
+  },
+  {
+    id: '2',
+    year: '1983',
+    title: 'Billie Jean - Motown 25',
+    description: 'The moonwalk debut performance',
+    type: 'video',
+    thumbnail: 'https://i.pinimg.com/736x/bb/0d/ff/bb0dffacbc60ae9f18bf5d7ef49130c7.jpg',
+    mediaUrl: 'https://www.youtube.com/embed/g3t6YDnGXAc',
+    stats: '47M+ Views',
+  },
+  {
+    id: '3',
+    year: '2024',
+    title: 'The Legacy Continues',
+    description: 'A deep dive into Michael\'s influence on modern music',
+    type: 'podcast',
+    thumbnail: 'https://i.pinimg.com/736x/5d/e2/64/5de264d05cb658962d7a5a2a642fc0f4.jpg',
+    mediaUrl: 'https://www.youtube.com/embed/sOnqjkJTMaA',
+    stats: '2.5M+ Listens',
+  },
+  {
+    id: '4',
+    year: '1987',
+    title: 'Bad Era Analysis',
+    description: 'How Bad changed pop music forever',
+    type: 'article',
+    thumbnail: 'https://i.pinimg.com/1200x/83/3f/94/833f949ce214bb52c2f83d7efb6f0dac.jpg',
+    mediaUrl: '/article/bad-era',
+    stats: '1.2M+ Reads',
+  },
+  {
+    id: '5',
+    year: '1993',
+    title: 'Super Bowl XXVII',
+    description: 'Historic halftime performance',
+    type: 'video',
+    thumbnail: 'https://i.pinimg.com/736x/7e/8a/c6/7e8ac67fe5ab18f8c83ce77b1802daf2.jpg',
+    mediaUrl: 'https://www.youtube.com/embed/wVXGJ2uz5fM',
+    stats: '133M+ Viewers',
+  },
+  {
+    id: '6',
+    year: '1979',
+    title: 'Off The Wall',
+    description: 'The album that started it all',
+    type: 'music',
+    thumbnail: 'https://i.pinimg.com/736x/61/46/91/614691a5c6bba536698249705121b382.jpg',
+    mediaUrl: 'https://www.youtube.com/embed/h_D3VFfhvs4',
+    stats: '20M+ Albums Sold',
+  },
+  {
+    id: '7',
+    year: '2025',
+    title: 'Jaafar\'s Journey',
+    description: 'Behind the scenes of the biopic',
+    type: 'podcast',
+    thumbnail: 'https://i.pinimg.com/1200x/58/db/b4/58dbb4c0a4edfcc219d856bdd0500772.jpg',
+    mediaUrl: 'https://www.youtube.com/embed/sOnqjkJTMaA',
+    stats: '3M+ Listens',
+  }
+];
+
+const typeIcons = {
+  music: Music,
+  video: Video,
+  podcast: Mic,
+  article: FileText,
+};
+
+export default function Trending() {
+  const [selectedItem, setSelectedItem] = useState<TrendingItem>(trendingItems[0]);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const handleItemClick = (item: TrendingItem, index: number) => {
+    setSelectedItem(item);
+    setCurrentIndex(index);
+    setIsPlaying(false);
+  };
+
+  const handlePlayPause = () => {
+    if (selectedItem.type === 'article') {
+      window.location.href = selectedItem.mediaUrl;
+    } else {
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const Icon = typeIcons[selectedItem.type];
+
+  return (
+    <section className="min-h-screen py-16 md:py-20 px-3 md:px-4" style={{
+      background: 'linear-gradient(to bottom, #221912, #352618)', // Lighter chocolate color only
+    }}>
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-12 md:mb-16 relative">
+          <div className="inline-block relative">
+            <h2 className="relative text-5xl md:text-7xl font-light tracking-wider text-amber-100 px-8 py-4" style={{
+              fontFamily: 'Georgia, serif',
+              textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
+              letterSpacing: '0.15em'
+            }}>
+              TRENDING
+            </h2>
+          </div>
+          <p className="text-amber-300/60 mt-6 text-sm tracking-widest uppercase" style={{ fontFamily: 'Georgia, serif' }}>
+            Curated Archives & Featured Media
+          </p>
+        </div>
+
+        <div className="mb-10 md:mb-14">
+          <div className="relative group" style={{
+            boxShadow: '0 0 60px rgba(217, 119, 6, 0.2), inset 0 0 0 1px rgba(217, 119, 6, 0.3)'
+          }}>
+            <div className="absolute -inset-[1px] bg-gradient-to-r from-amber-900/50 via-amber-700/50 to-amber-900/50"></div>
+
+            <div className="relative bg-black">
+              <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-amber-600/50"></div>
+              <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-amber-600/50"></div>
+              <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-amber-600/50"></div>
+              <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-amber-600/50"></div>
+
+              <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
+                {isPlaying && selectedItem.type !== 'article' ? (
+                  <iframe
+                    src={`${selectedItem.mediaUrl}?autoplay=1`}
+                    className="absolute inset-0 w-full h-full"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                    title={selectedItem.title}
+                  />
+                ) : (
+                  <>
+                    <img
+                      src={selectedItem.thumbnail}
+                      alt={selectedItem.title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                      style={{ filter: 'sepia(0.15) contrast(1.1)' }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent">
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <button
+                          onClick={handlePlayPause}
+                          className="relative w-20 h-20 md:w-28 md:h-28 group/btn"
+                        >
+                          <div className="absolute inset-0 bg-amber-700/90 rotate-45 transition-all duration-500 group-hover/btn:rotate-[50deg] group-hover/btn:scale-110"
+                            style={{ boxShadow: '0 8px 32px rgba(217, 119, 6, 0.4)' }}></div>
+                          <div className="absolute inset-2 bg-gradient-to-br from-amber-500 to-amber-800 rotate-45"></div>
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            {selectedItem.type === 'article' ? (
+                              <FileText size={28} className="text-white" style={{ filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.5))' }} />
+                            ) : (
+                              <Play size={32} className="text-white ml-2" style={{ filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.5))' }} />
+                            )}
+                          </div>
+                        </button>
+                      </div>
+
+                      <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
+                        <div className="border-l-4 border-amber-600 pl-4 md:pl-6">
+                          <div className="flex items-center gap-3 mb-3">
+                            <div className="flex items-center gap-2 px-4 py-1.5 bg-amber-900/80 backdrop-blur-sm border border-amber-600/30">
+                              <Icon size={14} className="text-amber-400" />
+                              <span className="text-amber-100 text-xs uppercase tracking-wider font-light" style={{ fontFamily: 'Georgia, serif' }}>
+                                {selectedItem.type}
+                              </span>
+                            </div>
+                            <div className="px-3 py-1 bg-black/60 border border-amber-600/30">
+                              <span className="text-amber-400 text-xs font-light tracking-widest" style={{ fontFamily: 'Georgia, serif' }}>
+                                {selectedItem.year}
+                              </span>
+                            </div>
+                          </div>
+                          <h3 className="text-2xl md:text-5xl font-light text-amber-50 mb-2 md:mb-3 tracking-wide" style={{
+                            fontFamily: 'Georgia, serif',
+                            textShadow: '3px 3px 6px rgba(0,0,0,0.8)'
+                          }}>
+                            {selectedItem.title}
+                          </h3>
+                          <p className="text-amber-200/90 text-sm md:text-lg mb-2 font-light italic" style={{ fontFamily: 'Georgia, serif' }}>
+                            {selectedItem.description}
+                          </p>
+                          {selectedItem.stats && (
+                            <div className="flex items-center gap-2 mt-4">
+                              <div className="w-8 h-px bg-amber-600"></div>
+                              <p className="text-amber-400 text-xs md:text-sm tracking-wider uppercase font-light" style={{ fontFamily: 'Georgia, serif' }}>
+                                {selectedItem.stats}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative mb-10 md:mb-12">
+          <div
+            ref={scrollContainerRef}
+            className="flex overflow-x-auto gap-4 md:gap-6 pb-6 snap-x snap-mandatory scrollbar-hide px-3 md:px-4" // Changed px-4 to px-3 md:px-4
+          >
+            {trendingItems.map((item, index) => {
+              const ItemIcon = typeIcons[item.type];
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => handleItemClick(item, index)}
+                  className={`relative flex-shrink-0 w-32 md:w-40 transition-all duration-500 snap-start group/thumb ${
+                    currentIndex === index ? 'scale-105' : 'opacity-60 hover:opacity-100'
+                  }`}
+                >
+                  <div className="relative">
+                    <div className={`absolute -inset-[2px] bg-gradient-to-br from-amber-600 via-amber-700 to-amber-900 transition-opacity duration-300 ${
+                      currentIndex === index ? 'opacity-100' : 'opacity-0 group-hover/thumb:opacity-50'
+                    }`}></div>
+
+                    <div className="relative bg-black border border-amber-800/50" style={{ aspectRatio: '3/4' }}>
+                      <img
+                        src={item.thumbnail}
+                        alt={item.title}
+                        className="w-full h-full object-cover"
+                        style={{ filter: 'sepia(0.2) contrast(1.05)' }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent">
+                        <div className="absolute top-2 right-2 w-8 h-8 bg-amber-900/90 border border-amber-600/50 flex items-center justify-center">
+                          <ItemIcon size={14} className="text-amber-400" />
+                        </div>
+
+                        <div className="absolute bottom-0 left-0 right-0 p-2 md:p-3 bg-gradient-to-t from-black to-transparent">
+                          <div className="text-center border-t border-amber-600/30 pt-2">
+                            <p className="text-amber-400 text-xs md:text-sm font-light tracking-widest mb-1" style={{ fontFamily: 'Georgia, serif' }}>
+                              {item.year}
+                            </p>
+                            <p className="text-amber-100 text-xs font-light line-clamp-2" style={{ fontFamily: 'Georgia, serif' }}>
+                              {item.title}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="text-center mt-12">
+          <div className="inline-block relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-amber-900/50 via-amber-700/50 to-amber-900/50"></div>
+            <a
+              href="/trending"
+              className="relative block px-12 py-4 border-2 border-amber-600/50 text-amber-200 hover:text-amber-100 hover:border-amber-500 font-light text-base md:text-lg uppercase tracking-widest transition-all duration-300 group"
+              style={{
+                fontFamily: 'Georgia, serif',
+                boxShadow: '0 4px 24px rgba(0,0,0,0.3)'
+              }}
+            >
+              <span className="relative z-10">Explore Archives</span>
+              <div className="absolute inset-0 bg-amber-900/0 group-hover:bg-amber-900/30 transition-all duration-300"></div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <style>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
+    </section>
+  );
+}
