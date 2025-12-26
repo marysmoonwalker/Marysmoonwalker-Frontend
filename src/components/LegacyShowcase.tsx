@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface LegacyItem {
@@ -27,7 +26,7 @@ const legacyItems: LegacyItem[] = [
     id: 'moonwalk',
     title: 'The Moonwalk',
     year: '1983',
-    image: 'https://i.pinimg.com/736x/bb/0d/ff/bb0dffacbc60ae9f18bf5d7ef49130c7.jpg',
+    image: 'https://i.pinimg.com/1200x/dd/d6/30/ddd6302d9db7c7e61e563a880329698d.jpg',
     details: [
       { name: 'Motown 25', info: 'Debuted during legendary performance' },
       { name: 'Global Phenomenon', info: 'Most imitated dance move in history' },
@@ -48,7 +47,7 @@ const legacyItems: LegacyItem[] = [
   {
     id: 'billie-jean',
     title: 'Billie Jean',
-    year: '1983',
+    year: '1988',
     image: 'https://m.media-amazon.com/images/M/MV5BN2Q1OTcxYzktMWY3Yi00Y2ZjLTk0OWEtOGIxNWMyNzcxOTU2XkEyXkFqcGc@._V1_.jpg',
     details: [
       { name: 'MTV Breakthrough', info: 'First Black artist in heavy rotation' },
@@ -85,15 +84,14 @@ export default function LegacyShowcase() {
   const [hoveredImage, setHoveredImage] = useState<string | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  // Calculate current index based on scroll position
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
 
     const handleScroll = () => {
       const scrollLeft = container.scrollLeft;
-      const cardWidth = container.offsetWidth > 768 ? 384 : 320; // Responsive card width
-      const gap = 24; // gap-6 = 24px
+      const cardWidth = container.offsetWidth > 768 ? 384 : 320;
+      const gap = 24;
       const totalWidth = cardWidth + gap;
       
       const newIndex = Math.round(scrollLeft / totalWidth);
@@ -142,17 +140,20 @@ export default function LegacyShowcase() {
   };
 
   return (
-    <section className="py-16 px-4" style={{ backgroundColor: '#A89070' }}>
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="max-w-7xl mx-auto"
-      >
+    <section className="py-16 px-4" style={{ background: 'transparent' }}>
+      <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8 px-4">
           <div>
-            <h2 className="font-bold text-3xl md:text-4xl text-amber-950 mb-2">
+            <h2 className="font-light text-3xl md:text-5xl mb-2" style={{
+              fontFamily: 'Georgia, serif',
+              background: 'linear-gradient(to right, #FFD700, #FFA500, #FFD700)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              textShadow: '0 0 40px rgba(255, 215, 0, 0.3)',
+              letterSpacing: '0.1em',
+              filter: 'drop-shadow(2px 2px 8px rgba(0,0,0,0.9))'
+            }}>
               MJ'S LEGACY
             </h2>
           </div>
@@ -160,7 +161,11 @@ export default function LegacyShowcase() {
           <div className="flex gap-4">
             <button
               onClick={scrollLeft}
-              className="p-2 rounded-full border-2 border-yellow-700 text-yellow-700 hover:bg-yellow-700 hover:text-stone-50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-2 rounded-full border-2 border-amber-500/60 text-amber-400 hover:bg-amber-500/20 hover:border-amber-400 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed backdrop-blur-sm"
+              style={{ 
+                boxShadow: '0 0 20px rgba(255, 215, 0, 0.2)',
+                background: 'rgba(0, 0, 0, 0.3)'
+              }}
               aria-label="Scroll left"
               disabled={currentIndex === 0}
             >
@@ -168,7 +173,11 @@ export default function LegacyShowcase() {
             </button>
             <button
               onClick={scrollRight}
-              className="p-2 rounded-full border-2 border-yellow-700 text-yellow-700 hover:bg-yellow-700 hover:text-stone-50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-2 rounded-full border-2 border-amber-500/60 text-amber-400 hover:bg-amber-500/20 hover:border-amber-400 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed backdrop-blur-sm"
+              style={{ 
+                boxShadow: '0 0 20px rgba(255, 215, 0, 0.2)',
+                background: 'rgba(0, 0, 0, 0.3)'
+              }}
               aria-label="Scroll right"
               disabled={currentIndex === legacyItems.length - 1}
             >
@@ -188,16 +197,19 @@ export default function LegacyShowcase() {
             }}
           >
             {legacyItems.map((item) => (
-              <motion.div
+              <div
                 key={item.id}
                 className="flex-shrink-0 w-80 md:w-96 snap-start"
               >
-                <motion.div
-                  className="bg-stone-50 border-2 border-amber-700/30 hover:border-amber-700/60 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-xl h-full"
-                  whileHover={{ scale: 1.03 }}
+                <div
+                  className="border-2 border-amber-500/40 hover:border-amber-400 rounded-lg overflow-hidden transition-all duration-300 h-full backdrop-blur-sm"
+                  style={{ 
+                    background: 'rgba(0, 0, 0, 0.3)',
+                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), 0 0 40px rgba(255, 215, 0, 0.15)'
+                  }}
                 >
                   <div 
-                    className="aspect-square overflow-hidden"
+                    className="aspect-square overflow-hidden relative"
                     onMouseEnter={() => setHoveredImage(item.id)}
                     onMouseLeave={() => setHoveredImage(null)}
                     onTouchStart={() => setHoveredImage(item.id)}
@@ -206,48 +218,55 @@ export default function LegacyShowcase() {
                     <img
                       src={item.image}
                       alt={item.title}
-                      className={`w-full h-full object-cover hover:scale-110 transition-transform duration-500 ${
-                        hoveredImage === item.id ? 'sepia-0' : 'sepia'
-                      }`}
+                      className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                     />
+                    <div className={`absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent transition-opacity duration-300 ${
+                      hoveredImage === item.id ? 'opacity-60' : 'opacity-80'
+                    }`}></div>
                   </div>
 
-                  <div className="p-6 text-center h-40 flex flex-col justify-between">
+                  <div className="p-6 text-center h-40 flex flex-col justify-between backdrop-blur-sm" style={{
+                    background: 'rgba(0, 0, 0, 0.5)'
+                  }}>
                     <div>
-                      <h3 className="font-bold text-2xl md:text-3xl text-amber-950 mb-1">
+                      <h3 className="font-light text-2xl md:text-3xl mb-1" style={{
+                        fontFamily: 'Georgia, serif',
+                        color: '#FFD700',
+                        textShadow: '2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(255,215,0,0.2)'
+                      }}>
                         {item.title}
                       </h3>
-                      <p className="text-stone-600 text-sm mb-3">{item.year}</p>
+                      <p className="text-amber-400/80 text-sm mb-3" style={{ fontFamily: 'Georgia, serif' }}>{item.year}</p>
                     </div>
                     
                     <button
                       onClick={() => handleExploreDetails(item.id)}
-                      className="flex items-center justify-center gap-2 text-stone-700 text-sm uppercase tracking-wider hover:text-yellow-700 transition-colors duration-300 mx-auto font-semibold"
+                      className="flex items-center justify-center gap-2 text-amber-300 text-sm uppercase tracking-wider hover:text-amber-200 transition-colors duration-300 mx-auto font-light"
+                      style={{ fontFamily: 'Georgia, serif' }}
                     >
                       <span>Explore Details</span>
                       <ChevronRight size={16} />
                     </button>
                   </div>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
 
-        {/* Fixed Dots Indicator - No extended dots */}
         <div className="flex justify-center mt-8 gap-2">
           {legacyItems.map((_, index) => (
             <button
               key={index}
               onClick={() => scrollToIndex(index)}
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === currentIndex ? 'bg-yellow-700' : 'bg-stone-400 hover:bg-stone-600'
+                index === currentIndex ? 'bg-amber-500 shadow-[0_0_10px_rgba(255,215,0,0.5)]' : 'bg-white/30 hover:bg-white/60'
               }`}
               aria-label={`Go to item ${index + 1}`}
             />
           ))}
         </div>
-      </motion.div>
+      </div>
 
       <style>{`
         .scrollbar-hide::-webkit-scrollbar {

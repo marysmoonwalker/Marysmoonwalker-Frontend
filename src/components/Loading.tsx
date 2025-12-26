@@ -9,7 +9,7 @@ export default function Loading({ onComplete }: { onComplete: () => void }) {
       onAnimationComplete={onComplete}
       className="fixed inset-0 z-50 flex items-center justify-center"
       style={{
-        background: 'linear-gradient(to bottom, #221912, #352618)',
+        background: 'black',
       }}
     >
       <div className="text-center w-full">

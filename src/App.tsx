@@ -9,6 +9,7 @@ import LegacyShowcase from './components/LegacyShowcase';
 import Footer from './components/Footer';
 import Loading from './components/Loading';
 import Blogs from './components/Blogs';
+import Particles from './Particles';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -51,15 +52,21 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-mj-black">
-      <Hero />
-      <TimelineCarousel />
-      <LegacyShowcase />
-      <SiteFeatures />
-      <FamilyTree />
-      <Blogs />
-      <ForumPreview />
-      <Footer />
+    <div className="min-h-screen bg-black text-gray-100 relative overflow-hidden">
+      {/* Particles Background */}
+      <Particles />
+      
+      {/* Main Content - Higher z-index to appear above particles */}
+      <div className="relative z-10">
+        <Hero />
+        <TimelineCarousel />
+        <LegacyShowcase />
+        <SiteFeatures />
+        <FamilyTree />
+        <Blogs />
+        <ForumPreview />
+        <Footer />
+      </div>
     </div>
   );
 }

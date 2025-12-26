@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Newspaper, Video, BookOpen, Users } from 'lucide-react';
 
 interface Feature {
@@ -42,57 +41,57 @@ const features: Feature[] = [
 
 export default function SiteFeatures() {
   return (
-    <section className="relative py-24 px-4 overflow-hidden">
-      {/* Gradient Background - Much darker cream at top, light cream at bottom */}
-      <div 
-        className="absolute inset-0 z-0"
-        style={{
-          background: 'linear-gradient(to bottom, #A89070 0%, #E8D5B7 100%)'
-        }}
-      ></div>
+    <section className="relative py-24 px-4 overflow-hidden" style={{ background: 'transparent' }}>
       
-      {/* Subtle decorative elements - contained within viewport */}
-      <div className="absolute top-0 left-0 w-64 h-64 bg-amber-500/5 rounded-full blur-3xl -translate-x-1/3 -translate-y-1/3"></div>
-      <div className="absolute bottom-0 right-0 w-64 h-64 bg-yellow-500/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3"></div>
+      {/* Subtle decorative glow elements */}
+      <div className="absolute top-0 left-0 w-64 h-64 rounded-full blur-3xl -translate-x-1/3 -translate-y-1/3" style={{
+        background: 'radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%)'
+      }}></div>
+      <div className="absolute bottom-0 right-0 w-64 h-64 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" style={{
+        background: 'radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%)'
+      }}></div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="max-w-7xl mx-auto relative z-10"
-      >
-        {/* Header matching other sections */}
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
               className="group"
             >
-              <div className="relative bg-gradient-to-br from-stone-50 to-amber-50 rounded-xl overflow-hidden border-2 border-amber-700/30 transition-all duration-500 h-full p-6 md:p-8 hover:border-amber-700/60 hover:shadow-2xl hover:scale-[1.01]">
-                {/* Subtle glow effect */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-yellow-400/20 to-transparent rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500"></div>
+              <div className="relative rounded-xl overflow-hidden border-2 border-amber-500/40 transition-all duration-500 h-full p-6 md:p-8 hover:border-amber-400 hover:scale-[1.01] backdrop-blur-sm" style={{
+                background: 'rgba(0, 0, 0, 0.3)',
+                boxShadow: '0 4px 24px rgba(0, 0, 0, 0.4), 0 0 40px rgba(255, 215, 0, 0.15)'
+              }}>
+                {/* Gold glow effect on hover */}
+                <div className="absolute top-0 right-0 w-32 h-32 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500" style={{
+                  background: 'radial-gradient(circle, rgba(255,215,0,0.2) 0%, transparent 70%)'
+                }}></div>
 
                 <div className="relative z-10 flex flex-col h-full">
-                  {/* Icon with gradient - dark cream tones */}
-                  <motion.div
-                    className="w-20 h-20 rounded-xl bg-gradient-to-br from-amber-800 to-amber-700 p-4 text-amber-50 mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300 mx-auto"
-                    whileHover={{ rotate: 5, scale: 1.1 }}
+                  {/* Icon with gold gradient */}
+                  <div
+                    className="w-20 h-20 rounded-xl p-4 mb-6 mx-auto group-hover:scale-110 transition-transform duration-300"
+                    style={{
+                      background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
+                      boxShadow: '0 4px 20px rgba(255, 215, 0, 0.3)'
+                    }}
                   >
-                    {feature.icon}
-                  </motion.div>
+                    <div className="text-black">
+                      {feature.icon}
+                    </div>
+                  </div>
 
                   {/* Title */}
-                  <h3 className="font-bold text-2xl text-amber-950 text-center mb-4 group-hover:text-amber-800 transition-colors duration-300">
+                  <h3 className="font-light text-2xl text-center mb-4 group-hover:text-amber-300 transition-colors duration-300" style={{
+                    fontFamily: 'Georgia, serif',
+                    color: '#FFD700',
+                    textShadow: '2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(255,215,0,0.2)'
+                  }}>
                     {feature.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-stone-700 leading-relaxed mb-6 text-center text-base">
+                  <p className="text-white/80 leading-relaxed mb-6 text-center text-base" style={{ fontFamily: 'Georgia, serif' }}>
                     {feature.description}
                   </p>
 
@@ -102,7 +101,8 @@ export default function SiteFeatures() {
                       {feature.subItems.map((item, idx) => (
                         <span 
                           key={idx} 
-                          className="px-3 py-1 bg-amber-100 text-amber-800 text-xs rounded-full border border-amber-300 hover:border-amber-500 hover:bg-amber-200 transition-colors duration-200"
+                          className="px-3 py-1 bg-amber-500/20 text-amber-300 text-xs rounded-full border border-amber-500/40 hover:border-amber-400 hover:bg-amber-500/30 transition-colors duration-200"
+                          style={{ fontFamily: 'Georgia, serif' }}
                         >
                           {item}
                         </span>
@@ -111,34 +111,37 @@ export default function SiteFeatures() {
                   </div>
 
                   {/* Explore link */}
-                  <motion.a
+                  <a
                     href={feature.link}
-                    className="inline-flex items-center justify-center gap-3 text-yellow-700 hover:text-yellow-900 transition-colors duration-300 font-semibold uppercase tracking-wider text-sm group-hover:gap-4 border-t border-amber-700/20 pt-6"
-                    whileHover={{ x: 5 }}
+                    className="inline-flex items-center justify-center gap-3 text-amber-400 hover:text-amber-300 transition-all duration-300 font-light uppercase tracking-wider text-sm group-hover:gap-4 border-t border-amber-500/30 pt-6"
+                    style={{ fontFamily: 'Georgia, serif' }}
                   >
                     Explore Category
                     <span className="text-xl font-bold">→</span>
-                  </motion.a>
+                  </a>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* View All Button */}
         <div className="text-center mt-12">
-          <motion.a
+          <a
             href="/explore"
-            className="inline-flex items-center gap-3 border-2 border-yellow-700 px-10 py-4 text-yellow-800 hover:bg-yellow-700 hover:text-stone-50 font-bold text-lg uppercase rounded-lg transition-all duration-300 hover:scale-105 group"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
+            className="inline-flex items-center gap-3 border-2 border-amber-500/60 px-10 py-4 text-amber-300 hover:bg-amber-500/20 hover:border-amber-400 hover:text-amber-200 font-light text-lg uppercase rounded-lg transition-all duration-300 hover:scale-105 group backdrop-blur-sm"
+            style={{
+              fontFamily: 'Georgia, serif',
+              background: 'rgba(0, 0, 0, 0.3)',
+              boxShadow: '0 4px 24px rgba(0,0,0,0.4), 0 0 40px rgba(255, 215, 0, 0.1)'
+            }}
           >
             <Users size={20} />
             Explore Complete Collection
             <span className="text-xl group-hover:translate-x-1 transition-transform">→</span>
-          </motion.a>
+          </a>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

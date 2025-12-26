@@ -134,11 +134,20 @@ export default function FamilyTree() {
   };
 
   return (
-    <section className="py-16 px-4" style={{ backgroundColor: '#E8D5B7' }}>
+    <section className="py-16 px-4" style={{ background: 'transparent' }}>
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8 px-4">
           <div>
-            <h2 className="font-bold text-3xl md:text-4xl text-amber-950 mb-2">
+            <h2 className="font-light text-3xl md:text-5xl mb-2" style={{
+              fontFamily: 'Georgia, serif',
+              background: 'linear-gradient(to right, #FFD700, #FFA500, #FFD700)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              textShadow: '0 0 40px rgba(255, 215, 0, 0.3)',
+              letterSpacing: '0.1em',
+              filter: 'drop-shadow(2px 2px 8px rgba(0,0,0,0.9))'
+            }}>
               MJ'S FAMILY
             </h2>
           </div>
@@ -146,7 +155,11 @@ export default function FamilyTree() {
           <div className="flex gap-4">
             <button
               onClick={scrollLeft}
-              className="p-2 rounded-full border-2 border-yellow-700 text-yellow-700 hover:bg-yellow-700 hover:text-stone-50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-2 rounded-full border-2 border-amber-500/60 text-amber-400 hover:bg-amber-500/20 hover:border-amber-400 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed backdrop-blur-sm"
+              style={{ 
+                boxShadow: '0 0 20px rgba(255, 215, 0, 0.2)',
+                background: 'rgba(0, 0, 0, 0.3)'
+              }}
               aria-label="Scroll left"
               disabled={currentIndex === 0}
             >
@@ -154,7 +167,11 @@ export default function FamilyTree() {
             </button>
             <button
               onClick={scrollRight}
-              className="p-2 rounded-full border-2 border-yellow-700 text-yellow-700 hover:bg-yellow-700 hover:text-stone-50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-2 rounded-full border-2 border-amber-500/60 text-amber-400 hover:bg-amber-500/20 hover:border-amber-400 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed backdrop-blur-sm"
+              style={{ 
+                boxShadow: '0 0 20px rgba(255, 215, 0, 0.2)',
+                background: 'rgba(0, 0, 0, 0.3)'
+              }}
               aria-label="Scroll right"
               disabled={currentIndex === familyMembers.length - 1}
             >
@@ -178,25 +195,39 @@ export default function FamilyTree() {
                 key={member.id}
                 className="flex-shrink-0 w-80 md:w-96 snap-start"
               >
-                <div className="bg-stone-50 border-2 border-amber-700/30 hover:border-amber-700/60 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105 h-full">
-                  <div className="aspect-square overflow-hidden">
+                <div
+                  className="border-2 border-amber-500/40 hover:border-amber-400 rounded-lg overflow-hidden transition-all duration-300 h-full backdrop-blur-sm"
+                  style={{ 
+                    background: 'rgba(0, 0, 0, 0.3)',
+                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), 0 0 40px rgba(255, 215, 0, 0.15)'
+                  }}
+                >
+                  <div className="aspect-square overflow-hidden relative">
                     <img
                       src={member.image}
                       alt={member.name}
-                      className="w-full h-full object-cover hover:scale-110 transition-transform duration-500 sepia"
+                      className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
                   </div>
 
-                  <div className="p-6 text-center h-40 flex flex-col justify-between">
+                  <div className="p-6 text-center h-40 flex flex-col justify-between backdrop-blur-sm" style={{
+                    background: 'rgba(0, 0, 0, 0.5)'
+                  }}>
                     <div>
-                      <h3 className="text-2xl md:text-3xl text-amber-950 mb-1 font-semibold">
+                      <h3 className="font-light text-2xl md:text-3xl mb-1" style={{
+                        fontFamily: 'Georgia, serif',
+                        color: '#FFD700',
+                        textShadow: '2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(255,215,0,0.2)'
+                      }}>
                         {member.name}
                       </h3>
                     </div>
                     
                     <button
                       onClick={() => handleExploreDetails(member.id)}
-                      className="flex items-center justify-center gap-2 text-stone-700 text-sm uppercase tracking-wider hover:text-yellow-700 transition-colors duration-300 mx-auto font-semibold"
+                      className="flex items-center justify-center gap-2 text-amber-300 text-sm uppercase tracking-wider hover:text-amber-200 transition-colors duration-300 mx-auto font-light"
+                      style={{ fontFamily: 'Georgia, serif' }}
                     >
                       <span>Explore More</span>
                       <ArrowRight size={16} />
@@ -214,7 +245,7 @@ export default function FamilyTree() {
               key={index}
               onClick={() => scrollToIndex(index)}
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === currentIndex ? 'bg-yellow-700' : 'bg-stone-400 hover:bg-stone-600'
+                index === currentIndex ? 'bg-amber-500 shadow-[0_0_10px_rgba(255,215,0,0.5)]' : 'bg-white/30 hover:bg-white/60'
               }`}
               aria-label={`Go to item ${index + 1}`}
             />

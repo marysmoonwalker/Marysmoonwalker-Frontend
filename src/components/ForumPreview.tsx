@@ -37,20 +37,29 @@ const recentThreads: ForumThread[] = [
 ];
 
 const categoryColors: Record<string, string> = {
-  'News': 'bg-stone-700 text-stone-50',
-  'Rare Media': 'bg-purple-900 text-purple-50',
-  'Music Discussion': 'bg-amber-800 text-amber-50',
-  'Fashion': 'bg-rose-900 text-rose-50',
+  'News': 'bg-purple-500/20 text-purple-300 border-purple-500/40',
+  'Rare Media': 'bg-pink-500/20 text-pink-300 border-pink-500/40',
+  'Music Discussion': 'bg-amber-500/30 text-amber-300 border-amber-500/40',
+  'Fashion': 'bg-rose-500/20 text-rose-300 border-rose-500/40',
 };
 
 export default function ForumPreview() {
   return (
-    <section className="py-16 px-4" style={{ backgroundColor: '#E8D5B7' }}>
+    <section className="py-16 px-4" style={{ background: 'transparent' }}>
       <div className="max-w-7xl mx-auto">
-        {/* Header - Flush left like FamilyTree */}
+        {/* Header */}
         <div className="flex justify-between items-center mb-8 px-4">
           <div>
-            <h2 className="font-bold text-3xl md:text-4xl text-amber-950 mb-2">
+            <h2 className="font-light text-3xl md:text-5xl mb-2" style={{
+              fontFamily: 'Georgia, serif',
+              background: 'linear-gradient(to right, #FFD700, #FFA500, #FFD700)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              textShadow: '0 0 40px rgba(255, 215, 0, 0.3)',
+              letterSpacing: '0.1em',
+              filter: 'drop-shadow(2px 2px 8px rgba(0,0,0,0.9))'
+            }}>
               FORUM
             </h2>
           </div>
@@ -59,7 +68,8 @@ export default function ForumPreview() {
           <div className="flex items-center gap-4">
             <button
               onClick={() => console.log('Open chat/discussion')}
-              className="p-2 rounded-full border-2 border-yellow-700 text-yellow-700 hover:bg-yellow-700 hover:text-stone-50 transition-all duration-300"
+              className="p-2 rounded-full border-2 border-amber-500/60 text-amber-400 hover:bg-amber-500/20 hover:border-amber-400 transition-all duration-300"
+              style={{ boxShadow: '0 0 20px rgba(255, 215, 0, 0.2)' }}
               aria-label="Start new discussion"
               title="Start new discussion"
             >
@@ -72,38 +82,48 @@ export default function ForumPreview() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {recentThreads.map((thread, index) => (
             <div key={index} className="group">
-              <div className="bg-stone-50 border-2 border-amber-700/30 hover:border-amber-700/60 rounded-lg p-6 transition-all duration-300 h-full cursor-pointer hover:shadow-2xl hover:-translate-y-1">
+              <div 
+                className="bg-black border-2 border-amber-500/40 hover:border-amber-400 rounded-lg p-6 transition-all duration-300 h-full cursor-pointer hover:scale-[1.02]"
+                style={{ 
+                  boxShadow: '0 4px 24px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.1)'
+                }}
+              >
                 <div className="flex items-start gap-3 mb-4">
                   <img
                     src={thread.avatar}
                     alt={thread.author}
-                    className="w-12 h-12 rounded-full border-2 border-yellow-700 object-cover flex-shrink-0"
+                    className="w-12 h-12 rounded-full border-2 border-amber-500 object-cover flex-shrink-0"
+                    style={{ boxShadow: '0 0 10px rgba(255, 215, 0, 0.3)' }}
                   />
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap items-center justify-between mb-2 gap-2">
-                      <span className="text-amber-950 font-semibold text-sm truncate">
+                      <span className="text-amber-300 font-light text-sm truncate" style={{ fontFamily: 'Georgia, serif' }}>
                         {thread.author}
                       </span>
-                      <span className={`px-2 py-1 rounded text-xs uppercase font-semibold whitespace-nowrap ${categoryColors[thread.category]}`}>
+                      <span className={`px-2 py-1 rounded text-xs uppercase font-light border whitespace-nowrap ${categoryColors[thread.category]}`} style={{ fontFamily: 'Georgia, serif' }}>
                         {thread.category}
                       </span>
                     </div>
                   </div>
                 </div>
 
-                <h3 className="text-amber-950 font-semibold text-lg mb-4 line-clamp-2 group-hover:text-amber-800 transition-colors">
+                <h3 className="text-lg mb-4 line-clamp-2 group-hover:text-amber-300 transition-colors font-light" style={{
+                  fontFamily: 'Georgia, serif',
+                  color: '#FFD700',
+                  textShadow: '2px 2px 4px rgba(0,0,0,0.8)'
+                }}>
                   {thread.title}
                 </h3>
 
-                <div className="flex items-center justify-between text-stone-700 text-sm mt-4 pt-4 border-t border-amber-700/20">
+                <div className="flex items-center justify-between text-sm mt-4 pt-4 border-t border-amber-500/30" style={{ fontFamily: 'Georgia, serif' }}>
                   <div className="flex items-center gap-2">
-                    <MessageCircle size={16} className="text-yellow-700" />
-                    <span className="font-medium">{thread.replies}</span>
-                    <span className="text-stone-500">replies</span>
+                    <MessageCircle size={16} className="text-amber-400" />
+                    <span className="font-light text-white/80">{thread.replies}</span>
+                    <span className="text-white/50">replies</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Clock size={16} className="text-yellow-700" />
-                    <span className="text-stone-600">{thread.lastActive}</span>
+                    <Clock size={16} className="text-amber-400" />
+                    <span className="text-white/60">{thread.lastActive}</span>
                   </div>
                 </div>
               </div>
@@ -115,7 +135,11 @@ export default function ForumPreview() {
         <div className="text-center mt-12">
           <a
             href="/forum"
-            className="inline-flex items-center gap-3 border-2 border-yellow-700 px-12 py-4 text-yellow-800 hover:bg-yellow-700 hover:text-stone-50 font-bold text-xl uppercase tracking-wider rounded-lg transition-all duration-300 hover:scale-105 group"
+            className="inline-flex items-center gap-3 border-2 border-amber-500/60 px-12 py-4 text-amber-300 hover:bg-amber-500/20 hover:border-amber-400 hover:text-amber-200 font-light text-xl uppercase tracking-wider rounded-lg transition-all duration-300 hover:scale-105 group"
+            style={{
+              fontFamily: 'Georgia, serif',
+              boxShadow: '0 4px 24px rgba(0,0,0,0.5), 0 0 40px rgba(255, 215, 0, 0.1)'
+            }}
           >
             ENTER THE FORUM
             <MessageCircle size={20} className="group-hover:translate-x-1 transition-transform" />

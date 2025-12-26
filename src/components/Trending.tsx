@@ -25,11 +25,11 @@ const trendingItems: TrendingItem[] = [
   },
   {
     id: '2',
-    year: '1983',
+    year: '1988',
     title: 'Billie Jean - Motown 25',
     description: 'The moonwalk debut performance',
     type: 'video',
-    thumbnail: 'https://i.pinimg.com/736x/bb/0d/ff/bb0dffacbc60ae9f18bf5d7ef49130c7.jpg',
+    thumbnail: 'https://m.media-amazon.com/images/M/MV5BN2Q1OTcxYzktMWY3Yi00Y2ZjLTk0OWEtOGIxNWMyNzcxOTU2XkEyXkFqcGc@._V1_.jpg',
     mediaUrl: 'https://www.youtube.com/embed/g3t6YDnGXAc',
     stats: '47M+ Views',
   },
@@ -116,35 +116,40 @@ export default function Trending() {
 
   return (
     <section className="min-h-screen py-16 md:py-20 px-3 md:px-4" style={{
-      background: 'linear-gradient(to bottom, #221912, #352618)', // Lighter chocolate color only
+      background: 'transparent',
     }}>
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12 md:mb-16 relative">
           <div className="inline-block relative">
-            <h2 className="relative text-5xl md:text-7xl font-light tracking-wider text-amber-100 px-8 py-4" style={{
+            <h2 className="relative text-5xl md:text-7xl font-light tracking-wider px-8 py-4" style={{
               fontFamily: 'Georgia, serif',
-              textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
-              letterSpacing: '0.15em'
+              background: 'linear-gradient(to right, #FFD700, #FFA500, #FFD700)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              textShadow: '0 0 40px rgba(255, 215, 0, 0.3)',
+              letterSpacing: '0.15em',
+              filter: 'drop-shadow(2px 2px 8px rgba(0,0,0,0.9))'
             }}>
               TRENDING
             </h2>
           </div>
-          <p className="text-amber-300/60 mt-6 text-sm tracking-widest uppercase" style={{ fontFamily: 'Georgia, serif' }}>
+          <p className="text-white/70 mt-6 text-sm tracking-widest uppercase" style={{ fontFamily: 'Georgia, serif' }}>
             Curated Archives & Featured Media
           </p>
         </div>
 
         <div className="mb-10 md:mb-14">
           <div className="relative group" style={{
-            boxShadow: '0 0 60px rgba(217, 119, 6, 0.2), inset 0 0 0 1px rgba(217, 119, 6, 0.3)'
+            boxShadow: '0 0 60px rgba(255, 215, 0, 0.3), inset 0 0 0 1px rgba(255, 215, 0, 0.4)'
           }}>
-            <div className="absolute -inset-[1px] bg-gradient-to-r from-amber-900/50 via-amber-700/50 to-amber-900/50"></div>
+            <div className="absolute -inset-[1px] bg-gradient-to-r from-yellow-600/40 via-amber-500/40 to-yellow-600/40"></div>
 
             <div className="relative bg-black">
-              <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-amber-600/50"></div>
-              <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-amber-600/50"></div>
-              <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-amber-600/50"></div>
-              <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-amber-600/50"></div>
+              <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-amber-500/60"></div>
+              <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-amber-500/60"></div>
+              <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-amber-500/60"></div>
+              <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-amber-500/60"></div>
 
               <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
                 {isPlaying && selectedItem.type !== 'article' ? (
@@ -161,7 +166,6 @@ export default function Trending() {
                       src={selectedItem.thumbnail}
                       alt={selectedItem.title}
                       className="absolute inset-0 w-full h-full object-cover"
-                      style={{ filter: 'sepia(0.15) contrast(1.1)' }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent">
                       <div className="absolute inset-0 flex items-center justify-center">
@@ -169,46 +173,47 @@ export default function Trending() {
                           onClick={handlePlayPause}
                           className="relative w-20 h-20 md:w-28 md:h-28 group/btn"
                         >
-                          <div className="absolute inset-0 bg-amber-700/90 rotate-45 transition-all duration-500 group-hover/btn:rotate-[50deg] group-hover/btn:scale-110"
-                            style={{ boxShadow: '0 8px 32px rgba(217, 119, 6, 0.4)' }}></div>
-                          <div className="absolute inset-2 bg-gradient-to-br from-amber-500 to-amber-800 rotate-45"></div>
+                          <div className="absolute inset-0 bg-gradient-to-br from-yellow-500 to-amber-600 rotate-45 transition-all duration-500 group-hover/btn:rotate-[50deg] group-hover/btn:scale-110"
+                            style={{ boxShadow: '0 8px 32px rgba(255, 215, 0, 0.5), 0 0 60px rgba(255, 215, 0, 0.3)' }}></div>
+                          <div className="absolute inset-2 bg-gradient-to-br from-amber-400 to-yellow-600 rotate-45"></div>
                           <div className="absolute inset-0 flex items-center justify-center">
                             {selectedItem.type === 'article' ? (
-                              <FileText size={28} className="text-white" style={{ filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.5))' }} />
+                              <FileText size={28} className="text-black" style={{ filter: 'drop-shadow(1px 1px 2px rgba(255,215,0,0.5))' }} />
                             ) : (
-                              <Play size={32} className="text-white ml-2" style={{ filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.5))' }} />
+                              <Play size={32} className="text-black ml-2" style={{ filter: 'drop-shadow(1px 1px 2px rgba(255,215,0,0.5))' }} />
                             )}
                           </div>
                         </button>
                       </div>
 
                       <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
-                        <div className="border-l-4 border-amber-600 pl-4 md:pl-6">
+                        <div className="border-l-4 border-amber-500 pl-4 md:pl-6">
                           <div className="flex items-center gap-3 mb-3">
-                            <div className="flex items-center gap-2 px-4 py-1.5 bg-amber-900/80 backdrop-blur-sm border border-amber-600/30">
+                            <div className="flex items-center gap-2 px-4 py-1.5 bg-amber-500/20 backdrop-blur-sm border border-amber-500/40">
                               <Icon size={14} className="text-amber-400" />
-                              <span className="text-amber-100 text-xs uppercase tracking-wider font-light" style={{ fontFamily: 'Georgia, serif' }}>
+                              <span className="text-amber-300 text-xs uppercase tracking-wider font-light" style={{ fontFamily: 'Georgia, serif' }}>
                                 {selectedItem.type}
                               </span>
                             </div>
-                            <div className="px-3 py-1 bg-black/60 border border-amber-600/30">
+                            <div className="px-3 py-1 bg-black/60 border border-amber-500/40">
                               <span className="text-amber-400 text-xs font-light tracking-widest" style={{ fontFamily: 'Georgia, serif' }}>
                                 {selectedItem.year}
                               </span>
                             </div>
                           </div>
-                          <h3 className="text-2xl md:text-5xl font-light text-amber-50 mb-2 md:mb-3 tracking-wide" style={{
+                          <h3 className="text-2xl md:text-5xl font-light mb-2 md:mb-3 tracking-wide" style={{
                             fontFamily: 'Georgia, serif',
-                            textShadow: '3px 3px 6px rgba(0,0,0,0.8)'
+                            color: '#FFD700',
+                            textShadow: '3px 3px 6px rgba(0,0,0,0.8), 0 0 30px rgba(255,215,0,0.3)'
                           }}>
                             {selectedItem.title}
                           </h3>
-                          <p className="text-amber-200/90 text-sm md:text-lg mb-2 font-light italic" style={{ fontFamily: 'Georgia, serif' }}>
+                          <p className="text-white/90 text-sm md:text-lg mb-2 font-light italic" style={{ fontFamily: 'Georgia, serif' }}>
                             {selectedItem.description}
                           </p>
                           {selectedItem.stats && (
                             <div className="flex items-center gap-2 mt-4">
-                              <div className="w-8 h-px bg-amber-600"></div>
+                              <div className="w-8 h-px bg-amber-500"></div>
                               <p className="text-amber-400 text-xs md:text-sm tracking-wider uppercase font-light" style={{ fontFamily: 'Georgia, serif' }}>
                                 {selectedItem.stats}
                               </p>
@@ -227,7 +232,7 @@ export default function Trending() {
         <div className="relative mb-10 md:mb-12">
           <div
             ref={scrollContainerRef}
-            className="flex overflow-x-auto gap-4 md:gap-6 pb-6 snap-x snap-mandatory scrollbar-hide px-3 md:px-4" // Changed px-4 to px-3 md:px-4
+            className="flex overflow-x-auto gap-4 md:gap-6 pb-6 snap-x snap-mandatory scrollbar-hide px-3 md:px-4"
           >
             {trendingItems.map((item, index) => {
               const ItemIcon = typeIcons[item.type];
@@ -240,28 +245,29 @@ export default function Trending() {
                   }`}
                 >
                   <div className="relative">
-                    <div className={`absolute -inset-[2px] bg-gradient-to-br from-amber-600 via-amber-700 to-amber-900 transition-opacity duration-300 ${
-                      currentIndex === index ? 'opacity-100' : 'opacity-0 group-hover/thumb:opacity-50'
-                    }`}></div>
+                    <div className={`absolute -inset-[2px] bg-gradient-to-br from-yellow-500 via-amber-500 to-yellow-600 transition-opacity duration-300 ${
+                      currentIndex === index ? 'opacity-100' : 'opacity-0 group-hover/thumb:opacity-60'
+                    }`} style={{
+                      boxShadow: currentIndex === index ? '0 0 20px rgba(255, 215, 0, 0.4)' : 'none'
+                    }}></div>
 
-                    <div className="relative bg-black border border-amber-800/50" style={{ aspectRatio: '3/4' }}>
+                    <div className="relative bg-black border border-amber-500/40" style={{ aspectRatio: '3/4' }}>
                       <img
                         src={item.thumbnail}
                         alt={item.title}
                         className="w-full h-full object-cover"
-                        style={{ filter: 'sepia(0.2) contrast(1.05)' }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent">
-                        <div className="absolute top-2 right-2 w-8 h-8 bg-amber-900/90 border border-amber-600/50 flex items-center justify-center">
+                        <div className="absolute top-2 right-2 w-8 h-8 bg-amber-500/20 backdrop-blur-sm border border-amber-500/50 flex items-center justify-center">
                           <ItemIcon size={14} className="text-amber-400" />
                         </div>
 
                         <div className="absolute bottom-0 left-0 right-0 p-2 md:p-3 bg-gradient-to-t from-black to-transparent">
-                          <div className="text-center border-t border-amber-600/30 pt-2">
+                          <div className="text-center border-t border-amber-500/40 pt-2">
                             <p className="text-amber-400 text-xs md:text-sm font-light tracking-widest mb-1" style={{ fontFamily: 'Georgia, serif' }}>
                               {item.year}
                             </p>
-                            <p className="text-amber-100 text-xs font-light line-clamp-2" style={{ fontFamily: 'Georgia, serif' }}>
+                            <p className="text-white text-xs font-light line-clamp-2" style={{ fontFamily: 'Georgia, serif' }}>
                               {item.title}
                             </p>
                           </div>
@@ -277,17 +283,17 @@ export default function Trending() {
 
         <div className="text-center mt-12">
           <div className="inline-block relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-amber-900/50 via-amber-700/50 to-amber-900/50"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-amber-600/30 via-yellow-500/30 to-amber-600/30"></div>
             <a
               href="/trending"
-              className="relative block px-12 py-4 border-2 border-amber-600/50 text-amber-200 hover:text-amber-100 hover:border-amber-500 font-light text-base md:text-lg uppercase tracking-widest transition-all duration-300 group"
+              className="relative block px-12 py-4 border-2 border-amber-500/60 text-amber-300 hover:text-amber-200 hover:border-amber-400 font-light text-base md:text-lg uppercase tracking-widest transition-all duration-300 group"
               style={{
                 fontFamily: 'Georgia, serif',
-                boxShadow: '0 4px 24px rgba(0,0,0,0.3)'
+                boxShadow: '0 4px 24px rgba(0,0,0,0.5), 0 0 40px rgba(255, 215, 0, 0.1)'
               }}
             >
               <span className="relative z-10">Explore Archives</span>
-              <div className="absolute inset-0 bg-amber-900/0 group-hover:bg-amber-900/30 transition-all duration-300"></div>
+              <div className="absolute inset-0 bg-amber-500/0 group-hover:bg-amber-500/20 transition-all duration-300"></div>
             </a>
           </div>
         </div>

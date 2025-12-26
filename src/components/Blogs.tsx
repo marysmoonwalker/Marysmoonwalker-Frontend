@@ -89,9 +89,9 @@ const blogPosts: BlogPost[] = [
 ];
 
 const categoryColors: Record<string, string> = {
-  Music: 'bg-amber-800 text-amber-50',
-  News: 'bg-stone-700 text-stone-50',
-  Events: 'bg-red-900 text-red-50',
+  Music: 'bg-amber-500/30 text-amber-300 border-amber-500/40',
+  News: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
+  Events: 'bg-red-500/20 text-red-300 border-red-500/40',
 };
 
 export default function MJBlog() {
@@ -99,13 +99,22 @@ export default function MJBlog() {
   const [showSearch, setShowSearch] = useState(false);
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#E8D5B7' }}>
+    <div className="min-h-screen" style={{ background: 'transparent' }}>
       <section className="py-16 px-4" id="blogs">
         <div className="max-w-7xl mx-auto">
-          {/* Updated Header - Flush left like FamilyTree */}
+          {/* Header */}
           <div className="flex justify-between items-center mb-8 px-4">
             <div>
-              <h2 className="font-bold text-3xl md:text-4xl text-amber-950 mb-2">
+              <h2 className="font-light text-3xl md:text-5xl mb-2" style={{
+                fontFamily: 'Georgia, serif',
+                background: 'linear-gradient(to right, #FFD700, #FFA500, #FFD700)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                textShadow: '0 0 40px rgba(255, 215, 0, 0.3)',
+                letterSpacing: '0.1em',
+                filter: 'drop-shadow(2px 2px 8px rgba(0,0,0,0.9))'
+              }}>
                 EVENTS
               </h2>
             </div>
@@ -119,7 +128,11 @@ export default function MJBlog() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search articles..."
-                    className="px-4 py-2 pr-10 rounded-lg border-2 border-yellow-700 bg-stone-50 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent w-48 md:w-64 transition-all duration-300"
+                    className="px-4 py-2 pr-10 rounded-lg border-2 border-amber-500/60 text-white/90 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-400 w-48 md:w-64 transition-all duration-300 backdrop-blur-sm"
+                    style={{ 
+                      fontFamily: 'Georgia, serif',
+                      background: 'rgba(0, 0, 0, 0.4)'
+                    }}
                     autoFocus
                   />
                   <button
@@ -127,7 +140,7 @@ export default function MJBlog() {
                       setShowSearch(false);
                       setSearchQuery('');
                     }}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-stone-400 hover:text-yellow-700 transition-colors"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-amber-400 transition-colors"
                   >
                     <ChevronRight size={20} />
                   </button>
@@ -135,7 +148,11 @@ export default function MJBlog() {
               ) : (
                 <button
                   onClick={() => setShowSearch(true)}
-                  className="p-2 rounded-full border-2 border-yellow-700 text-yellow-700 hover:bg-yellow-700 hover:text-stone-50 transition-all duration-300"
+                  className="p-2 rounded-full border-2 border-amber-500/60 text-amber-400 hover:bg-amber-500/20 hover:border-amber-400 transition-all duration-300 backdrop-blur-sm"
+                  style={{ 
+                    boxShadow: '0 0 20px rgba(255, 215, 0, 0.2)',
+                    background: 'rgba(0, 0, 0, 0.3)'
+                  }}
                   aria-label="Search articles"
                 >
                   <Search size={24} />
@@ -148,46 +165,63 @@ export default function MJBlog() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogPosts.map((post) => (
               <div key={post.id} className="group">
-                <div className="relative rounded-xl overflow-hidden border-2 border-amber-700/30 hover:border-amber-700/60 transition-all duration-500 h-full flex flex-col bg-stone-50 hover:shadow-2xl">
+                <div 
+                  className="relative rounded-xl overflow-hidden border-2 border-amber-500/40 hover:border-amber-400 transition-all duration-500 h-full flex flex-col hover:scale-[1.02] backdrop-blur-sm"
+                  style={{ 
+                    background: 'rgba(0, 0, 0, 0.3)',
+                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), 0 0 40px rgba(255, 215, 0, 0.15)'
+                  }}
+                >
                   <div className="relative h-64 overflow-hidden">
                     <img
                       src={post.image}
                       alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 sepia"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-amber-950/70 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
                   </div>
 
-                  <div className="p-6 flex flex-col flex-grow">
-                    <div className="flex items-center gap-2 mb-3">
+                  <div className="p-6 flex flex-col flex-grow backdrop-blur-sm" style={{
+                    background: 'rgba(0, 0, 0, 0.5)'
+                  }}>
+                    <div className="flex items-center gap-2 mb-3 flex-wrap">
                       {post.featured && (
-                        <span className="px-3 py-1 rounded-full text-xs uppercase font-semibold bg-yellow-600 text-yellow-50">
+                        <span className="px-3 py-1 rounded-full text-xs uppercase font-light border" style={{
+                          fontFamily: 'Georgia, serif',
+                          background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
+                          color: 'black',
+                          boxShadow: '0 2px 10px rgba(255, 215, 0, 0.3)'
+                        }}>
                           Featured
                         </span>
                       )}
-                      <span className={`px-3 py-1 rounded-full text-xs uppercase font-semibold ${categoryColors[post.category]}`}>
+                      <span className={`px-3 py-1 rounded-full text-xs uppercase font-light border ${categoryColors[post.category]}`} style={{ fontFamily: 'Georgia, serif' }}>
                         {post.category}
                       </span>
-                      <span className="text-xs text-stone-500 ml-auto">
+                      <span className="text-xs text-white/50 ml-auto" style={{ fontFamily: 'Georgia, serif' }}>
                         {post.readTime} min read
                       </span>
                     </div>
 
-                    <h3 className="font-bold text-xl mb-3 text-amber-950 group-hover:text-amber-800 transition-colors duration-300 line-clamp-2">
+                    <h3 className="font-light text-xl mb-3 group-hover:text-amber-300 transition-colors duration-300 line-clamp-2" style={{
+                      fontFamily: 'Georgia, serif',
+                      color: '#FFD700',
+                      textShadow: '2px 2px 4px rgba(0,0,0,0.8)'
+                    }}>
                       {post.title}
                     </h3>
 
-                    <p className="text-stone-600 mb-4 text-sm line-clamp-3 flex-grow">
+                    <p className="text-white/70 mb-4 text-sm line-clamp-3 flex-grow" style={{ fontFamily: 'Georgia, serif' }}>
                       {post.excerpt}
                     </p>
 
-                    <div className="flex items-center justify-between pt-4 border-t border-amber-700/20">
-                      <div className="flex items-center gap-2 text-xs text-stone-600">
-                        <span className="font-medium">{post.author}</span>
-                        <span className="text-yellow-700">•</span>
+                    <div className="flex items-center justify-between pt-4 border-t border-amber-500/30">
+                      <div className="flex items-center gap-2 text-xs text-white/60" style={{ fontFamily: 'Georgia, serif' }}>
+                        <span className="font-light">{post.author}</span>
+                        <span className="text-amber-400">•</span>
                         <span>{new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
                       </div>
-                      <button className="text-yellow-700 hover:text-yellow-900 transition-all duration-300 hover:translate-x-1 group/read">
+                      <button className="text-amber-400 hover:text-amber-300 transition-all duration-300 hover:translate-x-1 group/read">
                         <ArrowRight size={18} className="group-hover/read:translate-x-1 transition-transform" />
                       </button>
                     </div>
@@ -201,10 +235,16 @@ export default function MJBlog() {
           <div className="text-center mt-16">
             <a
               href="/blog"
-              className="inline-flex items-center gap-3 border-2 border-yellow-700 px-10 py-4 text-yellow-800 hover:bg-yellow-700 hover:text-stone-50 font-bold text-lg uppercase rounded-lg transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-3 border-2 border-amber-500/60 px-10 py-4 text-amber-300 hover:bg-amber-500/20 hover:border-amber-400 hover:text-amber-200 font-light text-lg uppercase rounded-lg transition-all duration-300 hover:scale-105 group backdrop-blur-sm"
+              style={{
+                fontFamily: 'Georgia, serif',
+                background: 'rgba(0, 0, 0, 0.3)',
+                boxShadow: '0 4px 24px rgba(0,0,0,0.4), 0 0 40px rgba(255, 215, 0, 0.1)'
+              }}
             >
               <Bookmark size={20} />
               View All Stories
+              <span className="text-xl group-hover:translate-x-1 transition-transform">→</span>
             </a>
           </div>
         </div>

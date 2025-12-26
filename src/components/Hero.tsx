@@ -22,10 +22,11 @@ export default function Hero() {
       {/* Profile Icon */}
       <div className="absolute top-6 right-6 z-20">
         <button
-          className="p-2 rounded-full bg-black/40 backdrop-blur-sm border border-amber-600/30 hover:bg-black/60 hover:border-amber-500 transition-all duration-300 group"
+          className="p-2 rounded-full bg-black/50 backdrop-blur-sm border-2 border-amber-500/60 hover:bg-amber-500/20 hover:border-amber-400 transition-all duration-300 group"
+          style={{ boxShadow: '0 0 20px rgba(255, 215, 0, 0.2)' }}
           aria-label="Profile"
         >
-          <User size={20} className="text-amber-300 group-hover:text-amber-200" />
+          <User size={20} className="text-amber-400 group-hover:text-amber-300" />
         </button>
       </div>
 
@@ -58,7 +59,6 @@ export default function Hero() {
               backgroundImage: `url(${desktopFallbackImage})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
-              filter: "sepia(0.15) contrast(1.1)",
             }}
           />
 
@@ -68,7 +68,6 @@ export default function Hero() {
               backgroundImage: `url(${mobileFallbackImage})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
-              filter: "sepia(0.15) contrast(1.1)",
             }}
           />
 
@@ -80,22 +79,26 @@ export default function Hero() {
       <div className="relative z-10 h-full flex flex-col justify-between text-center px-4 py-8">
         <div className="flex-1 flex flex-col justify-center">
           <h1
-            className="text-4xl md:text-7xl font-light tracking-wider text-amber-50 mb-3 md:mb-6"
+            className="text-4xl md:text-7xl font-light tracking-wider mb-3 md:mb-6"
             style={{
               fontFamily: "Georgia, serif",
-              textShadow: "3px 3px 8px rgba(0,0,0,0.8)",
+              background: 'linear-gradient(to right, #FFD700, #FFA500, #FFD700)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
               letterSpacing: "0.15em",
               animation: "fadeInDown 1s ease-out 0.2s backwards",
+              filter: 'drop-shadow(3px 3px 8px rgba(0,0,0,0.9)) drop-shadow(0 0 40px rgba(255, 215, 0, 0.3))'
             }}
           >
-            LEGEND LIVES
+            THE LEGEND LIVES
           </h1>
 
           <p
             className="text-amber-300/90 text-sm md:text-lg font-light tracking-widest"
             style={{
               fontFamily: "Georgia, serif",
-              textShadow: "2px 2px 4px rgba(0,0,0,0.6)",
+              textShadow: "2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(255,215,0,0.2)",
               animation: "fadeInUp 1s ease-out 0.5s backwards",
             }}
           >
@@ -103,9 +106,11 @@ export default function Hero() {
           </p>
 
           <div
-            className="h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent max-w-xs mx-auto mt-6 md:mt-8"
+            className="h-px max-w-xs mx-auto mt-6 md:mt-8"
             style={{
+              background: 'linear-gradient(to right, transparent, #FFD700 20%, #FFA500 50%, #FFD700 80%, transparent)',
               animation: "fadeInUp 1s ease-out 0.7s backwards",
+              boxShadow: '0 0 10px rgba(255, 215, 0, 0.5)'
             }}
           />
         </div>
@@ -117,8 +122,11 @@ export default function Hero() {
           }}
         >
           <span
-            className="text-amber-300/70 text-xs uppercase tracking-widest font-light"
-            style={{ fontFamily: "Georgia, serif" }}
+            className="text-amber-400/80 text-xs uppercase tracking-widest font-light"
+            style={{ 
+              fontFamily: "Georgia, serif",
+              textShadow: '2px 2px 4px rgba(0,0,0,0.8)'
+            }}
           >
             Discover
           </span>
@@ -127,7 +135,9 @@ export default function Hero() {
             className="w-8 h-8 flex items-center justify-center"
             style={{ animation: "bounce 2s infinite" }}
           >
-            <ChevronDown size={28} className="text-amber-400" />
+            <ChevronDown size={28} className="text-amber-400" style={{
+              filter: 'drop-shadow(0 0 8px rgba(255, 215, 0, 0.5))'
+            }} />
           </div>
         </div>
       </div>
