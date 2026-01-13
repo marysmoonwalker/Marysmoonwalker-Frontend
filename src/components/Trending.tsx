@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Play, Music, Video, Mic, FileText } from 'lucide-react';
 
 interface TrendingItem {
@@ -96,7 +96,26 @@ export default function Trending() {
   const [selectedItem, setSelectedItem] = useState<TrendingItem>(trendingItems[0]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [visibleElements, setVisibleElements] = useState<Set<string>>(new Set());
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleElements((prev) => new Set(prev).add(entry.target.id));
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const elements = document.querySelectorAll('[data-animate]');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleItemClick = (item: TrendingItem, index: number) => {
     setSelectedItem(item);
@@ -119,7 +138,13 @@ export default function Trending() {
       background: 'transparent',
     }}>
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12 md:mb-16 relative">
+        <div 
+          id="trending-header"
+          data-animate
+          className={`text-center mb-12 md:mb-16 relative transition-all duration-1000 ${
+            visibleElements.has('trending-header') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
           <div className="inline-block relative">
             <h2 className="relative text-5xl md:text-7xl font-light tracking-wider px-8 py-4" style={{
               fontFamily: 'Georgia, serif',
@@ -139,19 +164,25 @@ export default function Trending() {
           </p>
         </div>
 
-        <div className="mb-10 md:mb-14">
+        <div 
+          id="trending-player"
+          data-animate
+          className={`mb-10 md:mb-14 transition-all duration-1000 delay-200 ${
+            visibleElements.has('trending-player') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
           <div className="relative group" style={{
             boxShadow: '0 0 60px rgba(255, 215, 0, 0.3), inset 0 0 0 1px rgba(255, 215, 0, 0.4)'
           }}>
             <div className="absolute -inset-[1px] bg-gradient-to-r from-yellow-600/40 via-amber-500/40 to-yellow-600/40"></div>
 
             <div className="relative bg-black">
-              <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-amber-500/60"></div>
-              <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-amber-500/60"></div>
-              <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-amber-500/60"></div>
-              <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-amber-500/60"></div>
+              <div className="absolute top-0 left-0 w-10 h-10 border-t-2 border-l-2 border-amber-500/60"></div>
+              <div className="absolute top-0 right-0 w-10 h-10 border-t-2 border-r-2 border-amber-500/60"></div>
+              <div className="absolute bottom-0 left-0 w-10 h-10 border-b-2 border-l-2 border-amber-500/60"></div>
+              <div className="absolute bottom-0 right-0 w-10 h-10 border-b-2 border-r-2 border-amber-500/60"></div>
 
-              <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
+              <div className="relative w-full" style={{ paddingTop: '45%' }}>
                 {isPlaying && selectedItem.type !== 'article' ? (
                   <iframe
                     src={`${selectedItem.mediaUrl}?autoplay=1`}
@@ -171,50 +202,50 @@ export default function Trending() {
                       <div className="absolute inset-0 flex items-center justify-center">
                         <button
                           onClick={handlePlayPause}
-                          className="relative w-20 h-20 md:w-28 md:h-28 group/btn"
+                          className="relative w-16 h-16 md:w-20 md:h-20 group/btn"
                         >
                           <div className="absolute inset-0 bg-gradient-to-br from-yellow-500 to-amber-600 rotate-45 transition-all duration-500 group-hover/btn:rotate-[50deg] group-hover/btn:scale-110"
                             style={{ boxShadow: '0 8px 32px rgba(255, 215, 0, 0.5), 0 0 60px rgba(255, 215, 0, 0.3)' }}></div>
                           <div className="absolute inset-2 bg-gradient-to-br from-amber-400 to-yellow-600 rotate-45"></div>
                           <div className="absolute inset-0 flex items-center justify-center">
                             {selectedItem.type === 'article' ? (
-                              <FileText size={28} className="text-black" style={{ filter: 'drop-shadow(1px 1px 2px rgba(255,215,0,0.5))' }} />
+                              <FileText size={20} className="text-black" style={{ filter: 'drop-shadow(1px 1px 2px rgba(255,215,0,0.5))' }} />
                             ) : (
-                              <Play size={32} className="text-black ml-2" style={{ filter: 'drop-shadow(1px 1px 2px rgba(255,215,0,0.5))' }} />
+                              <Play size={24} className="text-black ml-1" style={{ filter: 'drop-shadow(1px 1px 2px rgba(255,215,0,0.5))' }} />
                             )}
                           </div>
                         </button>
                       </div>
 
-                      <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
-                        <div className="border-l-4 border-amber-500 pl-4 md:pl-6">
-                          <div className="flex items-center gap-3 mb-3">
-                            <div className="flex items-center gap-2 px-4 py-1.5 bg-amber-500/20 backdrop-blur-sm border border-amber-500/40">
-                              <Icon size={14} className="text-amber-400" />
+                      <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+                        <div className="border-l-3 border-amber-500 pl-3 md:pl-4">
+                          <div className="flex items-center gap-2 mb-2">
+                            <div className="flex items-center gap-1 px-3 py-1 bg-amber-500/20 backdrop-blur-sm border border-amber-500/40">
+                              <Icon size={12} className="text-amber-400" />
                               <span className="text-amber-300 text-xs uppercase tracking-wider font-light" style={{ fontFamily: 'Georgia, serif' }}>
                                 {selectedItem.type}
                               </span>
                             </div>
-                            <div className="px-3 py-1 bg-black/60 border border-amber-500/40">
+                            <div className="px-2 py-1 bg-black/60 border border-amber-500/40">
                               <span className="text-amber-400 text-xs font-light tracking-widest" style={{ fontFamily: 'Georgia, serif' }}>
                                 {selectedItem.year}
                               </span>
                             </div>
                           </div>
-                          <h3 className="text-2xl md:text-5xl font-light mb-2 md:mb-3 tracking-wide" style={{
+                          <h3 className="text-xl md:text-3xl font-light mb-1 tracking-wide" style={{
                             fontFamily: 'Georgia, serif',
                             color: '#FFD700',
-                            textShadow: '3px 3px 6px rgba(0,0,0,0.8), 0 0 30px rgba(255,215,0,0.3)'
+                            textShadow: '2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(255,215,0,0.3)'
                           }}>
                             {selectedItem.title}
                           </h3>
-                          <p className="text-white/90 text-sm md:text-lg mb-2 font-light italic" style={{ fontFamily: 'Georgia, serif' }}>
+                          <p className="text-white/90 text-sm md:text-base mb-1 font-light italic" style={{ fontFamily: 'Georgia, serif' }}>
                             {selectedItem.description}
                           </p>
                           {selectedItem.stats && (
-                            <div className="flex items-center gap-2 mt-4">
-                              <div className="w-8 h-px bg-amber-500"></div>
-                              <p className="text-amber-400 text-xs md:text-sm tracking-wider uppercase font-light" style={{ fontFamily: 'Georgia, serif' }}>
+                            <div className="flex items-center gap-2 mt-2">
+                              <div className="w-6 h-px bg-amber-500"></div>
+                              <p className="text-amber-400 text-xs tracking-wider uppercase font-light" style={{ fontFamily: 'Georgia, serif' }}>
                                 {selectedItem.stats}
                               </p>
                             </div>
@@ -229,7 +260,13 @@ export default function Trending() {
           </div>
         </div>
 
-        <div className="relative mb-10 md:mb-12">
+        <div 
+          id="trending-carousel"
+          data-animate
+          className={`relative mb-10 md:mb-12 transition-all duration-1000 delay-300 ${
+            visibleElements.has('trending-carousel') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
           <div
             ref={scrollContainerRef}
             className="flex overflow-x-auto gap-4 md:gap-6 pb-6 snap-x snap-mandatory scrollbar-hide px-3 md:px-4"
@@ -243,6 +280,9 @@ export default function Trending() {
                   className={`relative flex-shrink-0 w-32 md:w-40 transition-all duration-500 snap-start group/thumb ${
                     currentIndex === index ? 'scale-105' : 'opacity-60 hover:opacity-100'
                   }`}
+                  style={{
+                    animation: `dropIn 0.6s ease-out ${index * 0.1}s backwards`
+                  }}
                 >
                   <div className="relative">
                     <div className={`absolute -inset-[2px] bg-gradient-to-br from-yellow-500 via-amber-500 to-yellow-600 transition-opacity duration-300 ${
@@ -281,7 +321,13 @@ export default function Trending() {
           </div>
         </div>
 
-        <div className="text-center mt-12">
+        <div 
+          id="trending-button"
+          data-animate
+          className={`text-center mt-12 transition-all duration-1000 delay-500 ${
+            visibleElements.has('trending-button') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
           <div className="inline-block relative">
             <div className="absolute inset-0 bg-gradient-to-r from-amber-600/30 via-yellow-500/30 to-amber-600/30"></div>
             <a
@@ -306,6 +352,17 @@ export default function Trending() {
         .scrollbar-hide {
           -ms-overflow-style: none;
           scrollbar-width: none;
+        }
+        
+        @keyframes dropIn {
+          from {
+            opacity: 0;
+            transform: translateY(-30px) scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
         }
       `}</style>
     </section>

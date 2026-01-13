@@ -82,7 +82,26 @@ const legacyItems: LegacyItem[] = [
 export default function LegacyShowcase() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredImage, setHoveredImage] = useState<string | null>(null);
+  const [visibleElements, setVisibleElements] = useState<Set<string>>(new Set());
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleElements((prev) => new Set(prev).add(entry.target.id));
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const elements = document.querySelectorAll('[data-animate]');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const container = scrollContainerRef.current;
@@ -142,7 +161,13 @@ export default function LegacyShowcase() {
   return (
     <section className="py-16 px-4" style={{ background: 'transparent' }}>
       <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center mb-8 px-4">
+        <div 
+          id="legacy-header"
+          data-animate
+          className={`flex justify-between items-center mb-8 px-4 transition-all duration-1000 ${
+            visibleElements.has('legacy-header') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
           <div>
             <h2 className="font-light text-3xl md:text-5xl mb-2" style={{
               fontFamily: 'Georgia, serif',
@@ -196,10 +221,19 @@ export default function LegacyShowcase() {
               WebkitOverflowScrolling: 'touch'
             }}
           >
-            {legacyItems.map((item) => (
+            {legacyItems.map((item, index) => (
               <div
                 key={item.id}
-                className="flex-shrink-0 w-80 md:w-96 snap-start"
+                id={`legacy-card-${index}`}
+                data-animate
+                className={`flex-shrink-0 w-80 md:w-96 snap-start transition-all duration-1000 ${
+                  visibleElements.has(`legacy-card-${index}`) 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-12'
+                }`}
+                style={{
+                  transitionDelay: `${index * 150}ms`
+                }}
               >
                 <div
                   className="border-2 border-amber-500/40 hover:border-amber-400 rounded-lg overflow-hidden transition-all duration-300 h-full backdrop-blur-sm"
@@ -254,7 +288,13 @@ export default function LegacyShowcase() {
           </div>
         </div>
 
-        <div className="flex justify-center mt-8 gap-2">
+        <div 
+          id="legacy-dots"
+          data-animate
+          className={`flex justify-center mt-8 gap-2 transition-all duration-1000 delay-300 ${
+            visibleElements.has('legacy-dots') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           {legacyItems.map((_, index) => (
             <button
               key={index}

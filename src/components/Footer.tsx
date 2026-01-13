@@ -171,11 +171,7 @@ export default function Footer() {
             &copy; 2025 Mary's Moonwalker &bull; www.marys-moonwalker.com
           </p>
           <p className="text-amber-400 text-sm mb-2">
-            Made with love by a devoted fan since 1988
-          </p>
-          <p className="text-white/50 text-xs">
-            Domain available - Emma to register &bull; Admin panel coming soon for easy content
-            management
+            Made by Mary's Moonwalker a devoted fan since 1988
           </p>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { MessageCircle, Clock, MessageSquare } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 interface ForumThread {
   title: string;
@@ -44,11 +45,36 @@ const categoryColors: Record<string, string> = {
 };
 
 export default function ForumPreview() {
+  const [visibleElements, setVisibleElements] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleElements((prev) => new Set(prev).add(entry.target.id));
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const elements = document.querySelectorAll('[data-animate]');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="py-16 px-4" style={{ background: 'transparent' }}>
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="flex justify-between items-center mb-8 px-4">
+        <div 
+          id="forum-header"
+          data-animate
+          className={`flex justify-between items-center mb-8 px-4 transition-all duration-1000 ${
+            visibleElements.has('forum-header') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
           <div>
             <h2 className="font-light text-3xl md:text-5xl mb-2" style={{
               fontFamily: 'Georgia, serif',
@@ -64,7 +90,6 @@ export default function ForumPreview() {
             </h2>
           </div>
           
-          {/* Right side with Chat icon */}
           <div className="flex items-center gap-4">
             <button
               onClick={() => console.log('Open chat/discussion')}
@@ -78,10 +103,21 @@ export default function ForumPreview() {
           </div>
         </div>
 
-        {/* Forum Threads Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {recentThreads.map((thread, index) => (
-            <div key={index} className="group">
+            <div 
+              key={index} 
+              id={`forum-thread-${index}`}
+              data-animate
+              className={`group transition-all duration-1000 ${
+                visibleElements.has(`forum-thread-${index}`) 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-12'
+              }`}
+              style={{
+                transitionDelay: `${index * 150}ms`
+              }}
+            >
               <div 
                 className="bg-black border-2 border-amber-500/40 hover:border-amber-400 rounded-lg p-6 transition-all duration-300 h-full cursor-pointer hover:scale-[1.02]"
                 style={{ 
@@ -131,8 +167,13 @@ export default function ForumPreview() {
           ))}
         </div>
 
-        {/* Enter Forum Button */}
-        <div className="text-center mt-12">
+        <div 
+          id="forum-button"
+          data-animate
+          className={`text-center mt-12 transition-all duration-1000 delay-300 ${
+            visibleElements.has('forum-button') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
           <a
             href="/forum"
             className="inline-flex items-center gap-3 border-2 border-amber-500/60 px-12 py-4 text-amber-300 hover:bg-amber-500/20 hover:border-amber-400 hover:text-amber-200 font-light text-xl uppercase tracking-wider rounded-lg transition-all duration-300 hover:scale-105 group"

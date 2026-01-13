@@ -1,5 +1,5 @@
 import { ArrowRight, Bookmark, Search, ChevronRight } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface BlogPost {
   id: string;
@@ -97,13 +97,37 @@ const categoryColors: Record<string, string> = {
 export default function MJBlog() {
   const [searchQuery, setSearchQuery] = useState('');
   const [showSearch, setShowSearch] = useState(false);
+  const [visibleElements, setVisibleElements] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleElements((prev) => new Set(prev).add(entry.target.id));
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const elements = document.querySelectorAll('[data-animate]');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="min-h-screen" style={{ background: 'transparent' }}>
       <section className="py-16 px-4" id="blogs">
         <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <div className="flex justify-between items-center mb-8 px-4">
+          <div 
+            id="blogs-header"
+            data-animate
+            className={`flex justify-between items-center mb-8 px-4 transition-all duration-1000 ${
+              visibleElements.has('blogs-header') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+            }`}
+          >
             <div>
               <h2 className="font-light text-3xl md:text-5xl mb-2" style={{
                 fontFamily: 'Georgia, serif',
@@ -119,7 +143,6 @@ export default function MJBlog() {
               </h2>
             </div>
             
-            {/* Right side with Search icon/bar */}
             <div className="flex items-center gap-4">
               {showSearch ? (
                 <div className="relative">
@@ -161,10 +184,21 @@ export default function MJBlog() {
             </div>
           </div>
 
-          {/* Blog Posts Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post) => (
-              <div key={post.id} className="group">
+            {blogPosts.map((post, index) => (
+              <div 
+                key={post.id} 
+                id={`blog-card-${index}`}
+                data-animate
+                className={`group transition-all duration-1000 ${
+                  visibleElements.has(`blog-card-${index}`) 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-12'
+                }`}
+                style={{
+                  transitionDelay: `${index * 100}ms`
+                }}
+              >
                 <div 
                   className="relative rounded-xl overflow-hidden border-2 border-amber-500/40 hover:border-amber-400 transition-all duration-500 h-full flex flex-col hover:scale-[1.02] backdrop-blur-sm"
                   style={{ 
@@ -231,8 +265,13 @@ export default function MJBlog() {
             ))}
           </div>
 
-          {/* View All Button - Centered at bottom */}
-          <div className="text-center mt-16">
+          <div 
+            id="blogs-button"
+            data-animate
+            className={`text-center mt-16 transition-all duration-1000 delay-500 ${
+              visibleElements.has('blogs-button') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+            }`}
+          >
             <a
               href="/blog"
               className="inline-flex items-center gap-3 border-2 border-amber-500/60 px-10 py-4 text-amber-300 hover:bg-amber-500/20 hover:border-amber-400 hover:text-amber-200 font-light text-lg uppercase rounded-lg transition-all duration-300 hover:scale-105 group backdrop-blur-sm"
