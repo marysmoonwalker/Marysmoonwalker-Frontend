@@ -56,7 +56,7 @@ export default function Hero() {
           {/* Top Section - Between MARY'S MOONWALKER and MJ's face */}
           <div className="absolute top-[20%] left-0 right-0 flex flex-col items-center space-y-2 px-4">
             <p
-              className="text-sm font-bold text-center leading-tight"
+              className="text-base font-bold text-center leading-tight"
               style={{
                 fontFamily: 'Georgia, serif',
                 background: 'linear-gradient(180deg, #FFFFFF 0%, #E8E8E8 100%)',
@@ -87,7 +87,7 @@ export default function Hero() {
           {/* Bottom Section - Below MJ's chest */}
           <div className="absolute bottom-[25%] left-0 right-0 flex flex-col items-center space-y-2 px-4">
             <p
-              className="text-sm font-bold text-center leading-tight"
+              className="text-base font-bold text-center leading-tight"
               style={{
                 fontFamily: 'Georgia, serif',
                 background: 'linear-gradient(180deg, #FFD700 0%, #FFA500 100%)',
@@ -104,7 +104,7 @@ export default function Hero() {
             </p>
 
             <p
-              className="text-xs font-bold text-center leading-tight"
+              className="text-base font-bold text-center leading-tight"
               style={{
                 fontFamily: 'Georgia, serif',
                 background: 'linear-gradient(180deg, #E8E8E8 0%, #C0C0C0 100%)',
