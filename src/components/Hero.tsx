@@ -5,7 +5,12 @@ export default function Hero() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   const desktopImage = "/image2.jpg";
@@ -45,111 +50,206 @@ export default function Hero() {
 
       <div className="absolute inset-0 bg-black/40 z-0" />
 
-      <div className="relative z-10 h-full flex flex-col justify-between text-center px-4 py-8 md:py-12">
-        <div className="flex-1 flex flex-col justify-center items-center space-y-4 md:space-y-6">
-          <p
-            className="text-sm md:text-xl lg:text-2xl font-light max-w-3xl px-4"
-            style={{
-              fontFamily: 'Georgia, serif',
-              background: 'linear-gradient(180deg, #E8E8E8 0%, #B0B0B0 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              textShadow: '0 0 20px rgba(255, 255, 255, 0.5)',
-              filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.9)) drop-shadow(0 0 30px rgba(200, 200, 200, 0.4))',
-              animation: "fadeInUp 1.2s ease-out 0.5s backwards",
-              letterSpacing: "0.08em",
-              lineHeight: "1.5",
-              marginTop: "1rem",
-              marginBottom: "0.5rem",
-            }}
-          >
-            From the Imagination of a Devoted Fan
-            <br />
-            Comes a Website Like No Other
-          </p>
+      {/* MOBILE LAYOUT */}
+      {isMobile ? (
+        <div className="relative z-10 h-full w-full flex flex-col px-4">
+          {/* Top Section - Between MARY'S MOONWALKER and MJ's face */}
+          <div className="absolute top-[20%] left-0 right-0 flex flex-col items-center space-y-2 px-4">
+            <p
+              className="text-sm font-bold text-center leading-tight"
+              style={{
+                fontFamily: 'Georgia, serif',
+                background: 'linear-gradient(180deg, #FFFFFF 0%, #E8E8E8 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                textShadow: '0 0 30px rgba(255, 255, 255, 0.8)',
+                filter: 'drop-shadow(0 4px 16px rgba(0,0,0,1)) drop-shadow(0 0 50px rgba(255, 255, 255, 0.6))',
+                animation: "fadeInUp 1.2s ease-out 0.5s backwards",
+                letterSpacing: "0.05em",
+              }}
+            >
+              From the Imagination of a Devoted Fan
+              <br />
+              Comes a Website Like No Other
+            </p>
 
+            <div
+              className="h-px w-40"
+              style={{
+                background: 'linear-gradient(to right, transparent, #FFD700 20%, #FFA500 50%, #FFD700 80%, transparent)',
+                animation: "fadeInScale 1.2s ease-out 0.7s backwards",
+                boxShadow: '0 0 20px rgba(255, 215, 0, 0.7)',
+              }}
+            />
+          </div>
+
+          {/* Bottom Section - Below MJ's chest */}
+          <div className="absolute bottom-[25%] left-0 right-0 flex flex-col items-center space-y-2 px-4">
+            <p
+              className="text-sm font-bold text-center leading-tight"
+              style={{
+                fontFamily: 'Georgia, serif',
+                background: 'linear-gradient(180deg, #FFD700 0%, #FFA500 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                textShadow: '0 0 35px rgba(255, 215, 0, 0.8)',
+                filter: 'drop-shadow(0 5px 18px rgba(0,0,0,1)) drop-shadow(0 0 55px rgba(255, 165, 0, 0.6))',
+                animation: "fadeInUp 1.2s ease-out 0.9s backwards",
+                letterSpacing: "0.05em",
+              }}
+            >
+              Protecting His Extraordinary Legacy
+            </p>
+
+            <p
+              className="text-xs font-bold text-center leading-tight"
+              style={{
+                fontFamily: 'Georgia, serif',
+                background: 'linear-gradient(180deg, #E8E8E8 0%, #C0C0C0 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                textShadow: '0 0 30px rgba(192, 192, 192, 0.8)',
+                filter: 'drop-shadow(0 4px 16px rgba(0,0,0,1)) drop-shadow(0 0 50px rgba(200, 200, 200, 0.5))',
+                animation: "fadeInUp 1.2s ease-out 1.1s backwards",
+                letterSpacing: "0.06em",
+              }}
+            >
+              In Defense of the King
+            </p>
+          </div>
+
+          {/* Discover More - Bottom */}
           <div
-            className="h-px w-48 md:w-80 lg:w-96"
+            className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2"
             style={{
-              background: 'linear-gradient(to right, transparent, #FFD700 20%, #FFA500 50%, #FFD700 80%, transparent)',
-              animation: "fadeInScale 1.2s ease-out 0.7s backwards",
-              boxShadow: '0 0 15px rgba(255, 215, 0, 0.6)',
-              margin: "1rem 0",
-            }}
-          />
-
-          <p
-            className="text-lg md:text-2xl lg:text-3xl font-light"
-            style={{
-              fontFamily: 'Georgia, serif',
-              background: 'linear-gradient(180deg, #FFD700 0%, #FFA500 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              textShadow: '0 0 25px rgba(255, 215, 0, 0.5)',
-              filter: 'drop-shadow(0 3px 10px rgba(0,0,0,0.9)) drop-shadow(0 0 35px rgba(255, 165, 0, 0.4))',
-              animation: "fadeInUp 1.2s ease-out 0.9s backwards",
-              letterSpacing: "0.06em",
-              lineHeight: "1.4",
-              margin: "0.5rem 0",
+              animation: "fadeInUp 1.2s ease-out 1.3s backwards",
             }}
           >
-            Protecting His Extraordinary Legacy
-          </p>
+            <span
+              className="text-amber-400/90 text-xs tracking-wide font-medium"
+              style={{ 
+                fontFamily: 'Georgia, serif',
+                textShadow: '2px 2px 6px rgba(0,0,0,0.9)'
+              }}
+            >
+              Discover More
+            </span>
 
-          <p
-            className="text-base md:text-xl lg:text-2xl font-light"
-            style={{
-              fontFamily: 'Georgia, serif',
-              background: 'linear-gradient(180deg, #C0C0C0 0%, #909090 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              textShadow: '0 0 20px rgba(192, 192, 192, 0.5)',
-              filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.9)) drop-shadow(0 0 30px rgba(160, 160, 160, 0.3))',
-              animation: "fadeInUp 1.2s ease-out 1.1s backwards",
-              letterSpacing: "0.08em",
-              lineHeight: "1.4",
-              marginTop: "0.5rem",
-            }}
-          >
-            In Defense of the King
-          </p>
-        </div>
-
-        <div
-          className="flex flex-col items-center gap-3 pb-8"
-          style={{
-            animation: "fadeInUp 1.2s ease-out 1.3s backwards",
-          }}
-        >
-          <span
-            className="text-amber-400/80 text-xs tracking-wide font-light"
-            style={{ 
-              fontFamily: 'Georgia, serif',
-              textShadow: '2px 2px 4px rgba(0,0,0,0.8)'
-            }}
-          >
-            Discover More
-          </span>
-
-          <div
-            className="w-8 h-8 flex items-center justify-center"
-            style={{ animation: "bounce 2s infinite" }}
-          >
-            <ChevronDown size={28} className="text-amber-400" style={{
-              filter: 'drop-shadow(0 0 8px rgba(255, 215, 0, 0.5))'
-            }} />
+            <div
+              className="w-8 h-8 flex items-center justify-center"
+              style={{ animation: "bounce 2s infinite" }}
+            >
+              <ChevronDown size={24} className="text-amber-400" style={{
+                filter: 'drop-shadow(0 0 10px rgba(255, 215, 0, 0.6))'
+              }} />
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        /* DESKTOP LAYOUT */
+        <div className="relative z-10 h-full w-full flex flex-col px-4 py-12">
+          {/* Top Section - Between title and face */}
+          <div className="absolute top-[23%] left-0 right-0 flex flex-col items-center space-y-4">
+            <p
+              className="text-2xl font-light text-center max-w-4xl"
+              style={{
+                fontFamily: 'Georgia, serif',
+                background: 'linear-gradient(180deg, #FFFFFF 0%, #E8E8E8 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                textShadow: '0 0 30px rgba(255, 255, 255, 0.8)',
+                filter: 'drop-shadow(0 4px 16px rgba(0,0,0,1)) drop-shadow(0 0 50px rgba(255, 255, 255, 0.6))',
+                animation: "fadeInUp 1.2s ease-out 0.5s backwards",
+                letterSpacing: "0.08em",
+                lineHeight: "1.5",
+              }}
+            >
+              From the Imagination of a Devoted Fan
+              <br />
+              Comes a Website Like No Other
+            </p>
+
+            <div
+              className="h-px w-96"
+              style={{
+                background: 'linear-gradient(to right, transparent, #FFD700 20%, #FFA500 50%, #FFD700 80%, transparent)',
+                animation: "fadeInScale 1.2s ease-out 0.7s backwards",
+                boxShadow: '0 0 20px rgba(255, 215, 0, 0.7)',
+              }}
+            />
+          </div>
+
+          {/* Bottom Section */}
+          <div className="absolute bottom-[20%] left-0 right-0 flex flex-col items-center space-y-4">
+            <p
+              className="text-3xl font-light text-center"
+              style={{
+                fontFamily: 'Georgia, serif',
+                background: 'linear-gradient(180deg, #FFD700 0%, #FFA500 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                textShadow: '0 0 35px rgba(255, 215, 0, 0.8)',
+                filter: 'drop-shadow(0 5px 18px rgba(0,0,0,1)) drop-shadow(0 0 55px rgba(255, 165, 0, 0.6))',
+                animation: "fadeInUp 1.2s ease-out 0.9s backwards",
+                letterSpacing: "0.06em",
+              }}
+            >
+              Protecting His Extraordinary Legacy
+            </p>
+
+            <p
+              className="text-2xl font-light text-center"
+              style={{
+                fontFamily: 'Georgia, serif',
+                background: 'linear-gradient(180deg, #E8E8E8 0%, #C0C0C0 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                textShadow: '0 0 30px rgba(192, 192, 192, 0.8)',
+                filter: 'drop-shadow(0 4px 16px rgba(0,0,0,1)) drop-shadow(0 0 50px rgba(200, 200, 200, 0.5))',
+                animation: "fadeInUp 1.2s ease-out 1.1s backwards",
+                letterSpacing: "0.08em",
+              }}
+            >
+              In Defense of the King
+            </p>
+          </div>
+
+          {/* Discover More */}
+          <div
+            className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-3"
+            style={{
+              animation: "fadeInUp 1.2s ease-out 1.3s backwards",
+            }}
+          >
+            <span
+              className="text-amber-400/90 text-xs tracking-wide font-medium"
+              style={{ 
+                fontFamily: 'Georgia, serif',
+                textShadow: '2px 2px 6px rgba(0,0,0,0.9)'
+              }}
+            >
+              Discover More
+            </span>
+
+            <div
+              className="w-8 h-8 flex items-center justify-center"
+              style={{ animation: "bounce 2s infinite" }}
+            >
+              <ChevronDown size={28} className="text-amber-400" style={{
+                filter: 'drop-shadow(0 0 10px rgba(255, 215, 0, 0.6))'
+              }} />
+            </div>
+          </div>
+        </div>
+      )}
 
       <style>{`
-        @keyframes fadeInDown {
-          from { opacity: 0; transform: translateY(-40px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
         @keyframes fadeInUp {
           from { opacity: 0; transform: translateY(30px); }
           to { opacity: 1; transform: translateY(0); }
