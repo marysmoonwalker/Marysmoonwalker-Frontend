@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, GitMerge } from 'lucide-react';
-import { familyData } from './FamilyPage'; // We import the data array from the index page
+import { familyData } from './FamilyPage';
 
 const FONT = 'Georgia, serif';
 const MONO = '"Courier New", Courier, monospace';

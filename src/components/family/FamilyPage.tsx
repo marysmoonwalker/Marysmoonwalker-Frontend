@@ -37,35 +37,35 @@ export const familyData = [
         id: 'katherine',
         name: 'Katherine Jackson',
         relation: 'The Matriarch',
-        image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1000&auto=format&fit=crop', // Replace with real Katherine photo
+        image: 'https://i.pinimg.com/1200x/55/62/6f/55626fdfde8a7d2af6e5b2351f088ebd.jpg',
         excerpt: 'The gentle, grounding force of the Jackson family. Her unconditional love and deep faith shaped Michael’s lifelong philanthropic spirit and moral compass.',
     },
     {
         id: 'joe',
         name: 'Joe Jackson',
         relation: 'The Patriarch',
-        image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop', // Replace with real Joe photo
+        image: 'https://i.pinimg.com/736x/70/31/e5/7031e5ad3c07cb8f37e40a35db85f587.jpg',
         excerpt: 'The visionary and strict disciplinarian who recognized his children’s raw talent and relentlessly forged them into the world-conquering Jackson 5.',
     },
     {
         id: 'janet',
         name: 'Janet Jackson',
         relation: 'Youngest Sister',
-        image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1000&auto=format&fit=crop', // Replace with real Janet photo
+        image: 'https://i.pinimg.com/736x/fd/93/3e/fd933e65687a3fdb5f515b6ac2483c13.jpg',
         excerpt: 'A global music icon in her own right. She stepped out of the family shadow to redefine pop, R&B, and dance with masterpieces like Control and Rhythm Nation 1814.',
     },
     {
         id: 'jermaine',
         name: 'Jermaine Jackson',
         relation: 'Older Brother',
-        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop', // Replace with real Jermaine photo
+        image: 'https://i.pinimg.com/736x/9c/c4/27/9cc42799ac0c54ff93e4c239e2f8b236.jpg',
         excerpt: 'The original co-lead singer and bassist of The Jackson 5. His smooth vocals and musicianship were instrumental in establishing the group’s early Motown sound.',
     },
     {
         id: 'jaafar',
         name: 'Jaafar Jackson',
         relation: 'Nephew',
-        image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop', // Replace with real Jaafar photo
+        image: 'https://i.pinimg.com/1200x/58/db/b4/58dbb4c0a4edfcc219d856bdd0500772.jpg',
         excerpt: 'The son of Jermaine Jackson. A rising star handpicked to portray his uncle Michael in the upcoming biographical film, carrying the physical and vocal legacy into a new generation.',
     }
 ];

@@ -45,6 +45,15 @@ export interface ForumResponse {
     };
 }
 
+export interface IUserActivity {
+    _id: string;
+    type: 'thread' | 'reply' | 'like';
+    title: string;
+    category: string;
+    threadId: string;
+    createdAt: string;
+}
+
 export const forumApi = {
     // Fetch all threads with optional filters
     getThreads: async (params?: { category?: string; search?: string; page?: number; limit?: number }) => {
@@ -82,5 +91,11 @@ export const forumApi = {
     toggleLike: async (replyId: string) => {
         const response = await api.patch<{ data: { likes: number; liked: boolean } }>(`/forum/replies/${replyId}/like`);
         return response.data.data;
-    }
+    },
+
+    // Get a user's forum activity (threads, replies, and likes)
+    getUserActivity: async (userId: string) => {
+        const response = await api.get<{ data: { activity: IUserActivity[] } }>(`/forum/users/${userId}/activity`);
+        return response.data.data.activity;
+    },
 };
