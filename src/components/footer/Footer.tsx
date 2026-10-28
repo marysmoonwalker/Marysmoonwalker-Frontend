@@ -33,14 +33,14 @@ function XIcon({ size = 18 }: { size?: number }) {
 }
 
 export default function Footer() {
-    const isDark      = useTheme();
-    const textColor   = '#FFFFFF';
-    const mutedText   = 'rgba(255,255,255,0.6)';
+    const isDark = useTheme();
+    const textColor = '#FFFFFF';
+    const mutedText = 'rgba(255,255,255,0.6)';
     const borderColor = 'rgba(255,255,255,0.15)';
 
-    const [email, setEmail]           = useState('');
+    const [email, setEmail] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [feedbackMsg, setFeedbackMsg]   = useState({ text: '', type: '' });
+    const [feedbackMsg, setFeedbackMsg] = useState({ text: '', type: '' });
 
     const handleSubscribe = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -102,11 +102,11 @@ export default function Footer() {
                             </span>
                             <ul className="flex flex-col gap-3 text-sm md:text-base" style={{ fontFamily: FONT }}>
                                 {[
-                                    { name: 'The Legacy Timeline',  path: '/legacy'   },
+                                    { name: 'The Legacy Timeline', path: '/legacy' },
                                     { name: 'Articles & Narratives', path: '/articles' },
-                                    { name: 'Rare Media Vault',      path: '/media'    },
-                                    { name: 'Global Forum',          path: '/forum'    },
-                                    { name: 'About This Project',    path: '/about'    },
+                                    { name: 'Rare Media Vault', path: '/media' },
+                                    { name: 'Global Forum', path: '/forum' },
+                                    { name: 'About This Project', path: '/about' },
                                 ].map((link) => (
                                     <li key={link.name}>
                                         <Link to={link.path} className="transition-colors hover:text-orange-500 text-white/80 hover:text-white">
@@ -208,8 +208,8 @@ export default function Footer() {
                             <div className="flex gap-4">
                                 {[
                                     { icon: <Instagram size={18} />, url: 'https://instagram.com' },
-                                    { icon: <XIcon size={16} />,     url: 'https://twitter.com'  },
-                                    { icon: <Youtube size={18} />,   url: 'https://youtube.com'  },
+                                    { icon: <XIcon size={16} />, url: 'https://twitter.com' },
+                                    { icon: <Youtube size={18} />, url: 'https://youtube.com' },
                                 ].map((social, idx) => (
                                     <a
                                         key={idx}

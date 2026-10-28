@@ -121,24 +121,24 @@ export default function Navbar() {
     };
 
     // ─── Theme-aware color tokens (Vintage Editorial Palette) ──────────────
-    const navTextColor    = isDark ? '#FFFFFF' : '#111111';
-    const navBg           = scrolled
+    const navTextColor = isDark ? '#FFFFFF' : '#111111';
+    const navBg = scrolled
         ? isDark ? 'rgba(10, 10, 10, 0.97)' : 'rgba(255, 255, 255, 0.97)'
         : isDark
             ? 'linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, transparent 100%)'
             : 'linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, transparent 100%)';
-            
-    const dropdownBg      = isDark ? 'rgba(10, 10, 10, 0.98)' : 'rgba(255, 255, 255, 0.98)';
-    const dropdownText    = isDark ? '#FFFFFF' : '#111111';
-    const sidebarBg       = isDark ? 'rgba(10, 10, 10, 0.99)' : 'rgba(255, 255, 255, 0.99)';
-    const subtleText      = isDark ? 'rgba(255,255,255,0.45)' : 'rgba(0,0,0,0.4)';
+
+    const dropdownBg = isDark ? 'rgba(10, 10, 10, 0.98)' : 'rgba(255, 255, 255, 0.98)';
+    const dropdownText = isDark ? '#FFFFFF' : '#111111';
+    const sidebarBg = isDark ? 'rgba(10, 10, 10, 0.99)' : 'rgba(255, 255, 255, 0.99)';
+    const subtleText = isDark ? 'rgba(255,255,255,0.45)' : 'rgba(0,0,0,0.4)';
 
     // Accent Colors based on Bright Golden Chocolate
     const accentBorderAlpha = isDark ? 'rgba(255,140,0,0.4)' : 'rgba(255,140,0,0.5)';
-    const accentGlowAlpha   = isDark ? 'rgba(255,140,0,0.2)' : 'rgba(255,140,0,0.15)';
-    const dividerColor      = isDark ? 'rgba(255,140,0,0.2)' : 'rgba(255,140,0,0.3)';
-    const mobileItemBg      = isDark ? 'rgba(255,140,0,0.08)' : 'rgba(255,140,0,0.1)';
-    const mobileChildText   = isDark ? 'rgba(255,255,255,0.85)' : 'rgba(0,0,0,0.7)';
+    const accentGlowAlpha = isDark ? 'rgba(255,140,0,0.2)' : 'rgba(255,140,0,0.15)';
+    const dividerColor = isDark ? 'rgba(255,140,0,0.2)' : 'rgba(255,140,0,0.3)';
+    const mobileItemBg = isDark ? 'rgba(255,140,0,0.08)' : 'rgba(255,140,0,0.1)';
+    const mobileChildText = isDark ? 'rgba(255,255,255,0.85)' : 'rgba(0,0,0,0.7)';
 
     return (
         <>
@@ -166,7 +166,7 @@ export default function Navbar() {
                 <div className="w-full px-4 md:px-8 h-16 md:h-20 flex items-center justify-between">
 
                     {/* Logo */}
-                    <Link to="/" className="flex items-center gap-3 group shrink-0" style={{ textDecoration: 'none' }}>
+                    <Link to="/" className="flex items-center gap-3 group shrink-0" style={{ textDecoration: 'none', outline: 'none', border: 'none', boxShadow: 'none' }}>
                         <div className="w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden">
                             <img
                                 src="https://i.pinimg.com/1200x/6a/9f/01/6a9f01bc9359ff96f64da7e08ddede99.jpg"
@@ -300,7 +300,7 @@ export default function Navbar() {
 
                     {/* Desktop right: Theme toggle + Auth */}
                     <div className="flex items-center gap-4">
-                        
+
                         {/* Theme toggle — desktop only */}
                         <button
                             onClick={toggleTheme}
@@ -344,8 +344,8 @@ export default function Navbar() {
                                     </span>
                                 </div> */}
 
-                                <Link 
-                                    to="/profile" 
+                                <Link
+                                    to="/profile"
                                     className="flex items-center gap-2 transition-opacity hover:opacity-80"
                                 >
                                     <div
@@ -598,30 +598,30 @@ export default function Navbar() {
                     {isAuthenticated ? (
                         <div className="space-y-4">
 
-                          <Link
-                              to="/profile"
-                              onClick={() => setMobileOpen(false)}
-                              className="flex items-center gap-3 px-4 py-3 rounded-xl transition-opacity hover:opacity-80"
-                              style={{ border: `1px solid ${accentBorderAlpha}`, background: mobileItemBg }}
-                          >
-                              <div
-                                  className="w-10 h-10 rounded-full overflow-hidden shrink-0"
-                                  style={{ border: `1px solid ${accentBorderAlpha}` }}
-                              >
-                                  {user?.avatar
-                                      ? <img src={user.avatar} alt="Avatar" className="w-full h-full object-cover" />
-                                      : <User size={20} className="m-auto mt-2.5" style={{ color: ACCENT_COLOR }} />
-                                  }
-                              </div>
-                              <div className="flex flex-col">
-                                  <span
-                                      className="text-sm font-bold uppercase tracking-widest"
-                                      style={{ fontFamily: FONT, color: ACCENT_COLOR }}
-                                  >
-                                      {user?.username}
-                                  </span>
-                              </div>
-                          </Link>
+                            <Link
+                                to="/profile"
+                                onClick={() => setMobileOpen(false)}
+                                className="flex items-center gap-3 px-4 py-3 rounded-xl transition-opacity hover:opacity-80"
+                                style={{ border: `1px solid ${accentBorderAlpha}`, background: mobileItemBg }}
+                            >
+                                <div
+                                    className="w-10 h-10 rounded-full overflow-hidden shrink-0"
+                                    style={{ border: `1px solid ${accentBorderAlpha}` }}
+                                >
+                                    {user?.avatar
+                                        ? <img src={user.avatar} alt="Avatar" className="w-full h-full object-cover" />
+                                        : <User size={20} className="m-auto mt-2.5" style={{ color: ACCENT_COLOR }} />
+                                    }
+                                </div>
+                                <div className="flex flex-col">
+                                    <span
+                                        className="text-sm font-bold uppercase tracking-widest"
+                                        style={{ fontFamily: FONT, color: ACCENT_COLOR }}
+                                    >
+                                        {user?.username}
+                                    </span>
+                                </div>
+                            </Link>
 
                             {/* <div
                                 className="flex items-center gap-3 px-4 py-3 rounded-xl"
@@ -645,7 +645,7 @@ export default function Navbar() {
                                     </span>
                                 </div>
                             </div> */}
-                            
+
                             {/* Integrated Admin Button (Mobile) */}
                             {user?.role === 'admin' && (
                                 <a

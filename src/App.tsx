@@ -13,6 +13,8 @@ import ForumPreview from './components/ForumPreview';
 import TimelineCarousel from './components/Trending';
 import TheEras from './components/TheEras';
 import Blogs from './components/Blogs';
+import { SpookyAtmosphere } from './components/halloween/SpookyAtmosphere';
+
 
 // ─ PAGES ─
 import BlogPage from './components/BlogPage';
@@ -48,7 +50,7 @@ function ProtectedRoute({ children }: { children: ReactNode }) {
 
   if (isLoading) {
     return (
-      <div 
+      <div
         className="min-h-screen bg-mj-black flex items-center justify-center text-white/50"
         style={{ fontFamily: FONT, letterSpacing: '0.2em' }}
       >
@@ -76,7 +78,7 @@ function AppLayout() {
     '/reset-password-otp',
     '/new-password'
   ];
-  
+
   const isAuthRoute = authRoutes.includes(location.pathname);
 
   useLayoutEffect(() => {
@@ -85,7 +87,7 @@ function AppLayout() {
 
   return (
     <div className="relative z-10 flex flex-col flex-grow">
-      
+
       {!isAuthRoute && <Navbar />}
 
       <main className="flex-grow">
@@ -151,7 +153,7 @@ function AppLayout() {
 
 // ROOT APP COMPONENT
 export default function App() {
-  
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -163,7 +165,7 @@ export default function App() {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
-    
+
     requestAnimationFrame(raf);
 
     return () => lenis.destroy();
@@ -178,7 +180,7 @@ export default function App() {
         (element as HTMLElement).style.transform = `translateY(${yPos}px)`;
       });
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -186,6 +188,7 @@ export default function App() {
   return (
     <Router>
       <div className="min-h-screen bg-mj-black relative overflow-hidden flex flex-col">
+        <SpookyAtmosphere />
         <AppLayout />
       </div>
     </Router>

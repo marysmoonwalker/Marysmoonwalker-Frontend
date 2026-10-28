@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { useHalloween } from './halloween/HalloweenContext';
+import { JackOLantern } from './halloween/HalloweenIcons';
 
 const FONT = 'Georgia, serif';
 const MONO = '"Courier New", Courier, monospace';
@@ -79,6 +81,7 @@ const BENTO_ITEMS = [
 
 export default function TheLegacyBento() {
     const isDark = useTheme();
+    const { isHalloween } = useHalloween();
 
     const bg = isDark ? '#0A0A0A' : '#F8F9FA';
     const textColor = isDark ? '#FFFFFF' : '#111111';
@@ -92,10 +95,15 @@ export default function TheLegacyBento() {
                 <div className="mb-10 flex items-end justify-between border-b pb-4" style={{ borderColor }}>
                     <div>
                         <h2 
-                            className="text-2xl md:text-3xl font-bold mb-1" 
+                            className="text-2xl md:text-3xl font-bold mb-1 flex items-center gap-2.5" 
                             style={{ color: textColor, fontFamily: FONT }}
                         >
-                            The Legacy
+                            <span>The Legacy</span>
+                            {isHalloween && (
+                                <span className="inline-block hover:scale-125 transition-transform" title="Thriller Halloween Legacy">
+                                    <JackOLantern size={22} glow={true} />
+                                </span>
+                            )}
                         </h2>
                         <p 
                             className="text-[11px] font-bold uppercase tracking-widest"
@@ -140,13 +148,23 @@ export default function TheLegacyBento() {
                             {/* Content */}
                             <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
                                 
-                                {/* Year Badge */}
-                                <span 
-                                    className="px-2.5 py-1 w-fit rounded-[6px] font-bold text-[10px] tracking-widest uppercase mb-3 shadow-lg"
-                                    style={{ backgroundColor: ACCENT_COLOR, color: '#000', fontFamily: MONO }}
-                                >
-                                    {item.year}
-                                </span>
+                                {/* Year Badge + Halloween Spotlight Badge */}
+                                <div className="flex items-center gap-2 mb-3">
+                                    <span 
+                                        className="px-2.5 py-1 w-fit rounded-[6px] font-bold text-[10px] tracking-widest uppercase shadow-lg"
+                                        style={{ backgroundColor: ACCENT_COLOR, color: '#000', fontFamily: MONO }}
+                                    >
+                                        {item.year}
+                                    </span>
+                                    {isHalloween && item.id === 'thriller' && (
+                                        <span 
+                                            className="px-2.5 py-1 rounded-[6px] font-bold text-[10px] tracking-widest uppercase bg-[#FF7518] text-black shadow-lg flex items-center gap-1.5 animate-pulse"
+                                            style={{ fontFamily: MONO }}
+                                        >
+                                            <JackOLantern size={12} glow={false} /> Thriller Season Spotlight
+                                        </span>
+                                    )}
+                                </div>
                                 
                                 {/* Title */}
                                 <h3 

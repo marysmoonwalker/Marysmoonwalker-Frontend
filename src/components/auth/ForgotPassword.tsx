@@ -26,8 +26,8 @@ export default function ForgotPassword() {
     };
 
     // Branding Tokens
-    const goldGradient = 'linear-gradient(to right, #FFD700, #FFA500)';
-    const goldGlow     = 'rgba(255, 215, 0, 0.3)';
+    const brandGradient = 'linear-gradient(135deg, #FF8C00 0%, #FFA000 50%, #FF7518 100%)';
+    const brandGlow     = 'rgba(255, 140, 0, 0.35)';
 
     return (
         <>
@@ -43,7 +43,7 @@ export default function ForgotPassword() {
 
                 <Link
                     to="/"
-                    className="absolute top-8 left-6 flex items-center gap-2 text-xs uppercase tracking-widest z-10 text-white hover:text-[#FFD700] transition-colors"
+                    className="absolute top-8 left-6 flex items-center gap-2 text-xs uppercase tracking-widest z-10 text-white hover:text-[#FF8C00] transition-colors"
                     style={{ fontFamily: 'Georgia, serif' }}
                 >
                     <Home size={15} /> Home
@@ -55,7 +55,7 @@ export default function ForgotPassword() {
                             className="text-xl font-light tracking-[0.2em] mb-2"
                             style={{
                                 fontFamily: 'Georgia, serif',
-                                background: goldGradient,
+                                background: brandGradient,
                                 WebkitBackgroundClip: 'text',
                                 WebkitTextFillColor: 'transparent',
                                 backgroundClip: 'text',
@@ -63,7 +63,7 @@ export default function ForgotPassword() {
                         >
                             RECOVER ACCESS
                         </h1>
-                        <p className="text-[11px] uppercase tracking-[0.2em] text-white font-bold" style={{ fontFamily: 'Georgia, serif' }}>
+                        <p className="text-[11px] uppercase tracking-[0.2em] font-bold" style={{ fontFamily: 'Georgia, serif', color: '#FF8C00' }}>
                             Reset your password
                         </p>
                     </div>
@@ -78,13 +78,13 @@ export default function ForgotPassword() {
                         {/* Email Address */}
                         <div>
                             <div className="relative">
-                                <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 transition-colors text-white" />
+                                <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 transition-colors text-white/50" />
                                 <input
                                     type="email"
                                     placeholder="Enter your email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className="w-full pl-12 pr-4 py-4 rounded-xl text-sm outline-none transition-all border bg-white/5 border-white/20 text-white placeholder-white/30 focus:border-white"
+                                    className="w-full pl-12 pr-4 py-4 rounded-xl text-sm outline-none transition-all border bg-white/5 border-white/20 text-white placeholder-white/30 focus:border-[#FF8C00] focus:ring-1 focus:ring-[#FF8C00]/30"
                                     style={{ fontFamily: 'Georgia, serif', backdropFilter: 'blur(10px)' }}
                                 />
                             </div>
@@ -93,22 +93,22 @@ export default function ForgotPassword() {
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className="w-full py-4 mt-4 rounded-xl flex items-center justify-center gap-3 text-sm font-bold tracking-widest uppercase transition-all duration-300 disabled:opacity-60 text-black group"
-                            style={{ fontFamily: 'Georgia, serif', background: goldGradient, boxShadow: `0 10px 40px ${goldGlow}` }}
+                            className="w-full py-4 mt-4 rounded-xl flex items-center justify-center gap-3 text-sm font-bold tracking-widest uppercase transition-all duration-300 disabled:opacity-60 text-black group hover:scale-[0.99] active:scale-[0.98]"
+                            style={{ fontFamily: 'Georgia, serif', background: brandGradient, boxShadow: `0 10px 40px ${brandGlow}` }}
                         >
                             {isLoading ? <Loader2 size={16} className="animate-spin" /> : <>Send Code <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" /></>}
                         </button>
                     </form>
 
-                    <p className="text-center text-xs mt-10 text-white font-medium" style={{ fontFamily: 'Georgia, serif' }}>
-                        Remember your password? <Link to="/login" className="text-white border-b border-white hover:border-[#FFD700] hover:text-[#FFD700] pb-0.5 transition-all">Sign In</Link>
+                    <p className="text-center text-xs mt-10 text-white/80 font-medium" style={{ fontFamily: 'Georgia, serif' }}>
+                        Remember your password? <Link to="/login" className="text-white border-b border-white hover:border-[#FF8C00] hover:text-[#FF8C00] pb-0.5 transition-all">Sign In</Link>
                     </p>
                 </div>
             </div>
 
             {/* ===================== DESKTOP LAYOUT ===================== */}
             <div className="hidden lg:flex h-screen w-full overflow-hidden bg-black relative">
-                <Link to="/" className="absolute top-8 left-8 flex items-center gap-2 text-white hover:text-[#FFD700] transition-colors text-xs uppercase tracking-widest z-[200]" style={{ fontFamily: 'Georgia, serif' }}>
+                <Link to="/" className="absolute top-8 left-8 flex items-center gap-2 text-white hover:text-[#FF8C00] transition-colors text-xs uppercase tracking-widest z-[200]" style={{ fontFamily: 'Georgia, serif' }}>
                     <Home size={16} /> Home
                 </Link>
 
@@ -116,22 +116,22 @@ export default function ForgotPassword() {
                     <img src="https://i.pinimg.com/736x/7d/97/d1/7d97d16dbec260665d4ea02a6a4aeccb.jpg" alt="Michael Jackson" className="absolute inset-0 w-full h-full object-cover opacity-80" />
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/50 to-black" />
                     <div className="absolute bottom-32 left-12">
-                        <p className="text-white text-xs font-light tracking-[0.3em] uppercase" style={{ fontFamily: 'Georgia, serif' }}>Mary's Moonwalker</p>
+                        <p className="text-xs font-bold tracking-[0.3em] uppercase" style={{ fontFamily: 'Georgia, serif', color: '#FF8C00' }}>Mary's Moonwalker</p>
                         <h2 className="text-white text-2xl font-light tracking-widest mt-2" style={{ fontFamily: 'Georgia, serif' }}>The King of Pop Lives Forever</h2>
                     </div>
                 </div>
 
                 <div className="w-1/2 flex items-center justify-center relative px-4">
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(255,215,0,0.05) 0%, transparent 60%)', filter: 'blur(40px)' }} />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(255,140,0,0.08) 0%, transparent 60%)', filter: 'blur(40px)' }} />
 
                     <div className="relative w-full max-w-md" style={{ animation: 'fadeInUp 0.6s ease-out both' }}>
                         
                         <div className="rounded-2xl px-8 py-10 bg-black/85 border border-white/10" style={{ backdropFilter: 'blur(24px)' }}>
                             <div className="text-center mb-8">
-                                <h1 className="text-xl font-light tracking-[0.2em] mb-1" style={{ fontFamily: 'Georgia, serif', background: goldGradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                                <h1 className="text-xl font-light tracking-[0.2em] mb-1" style={{ fontFamily: 'Georgia, serif', background: brandGradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                                     RECOVER ACCESS
                                 </h1>
-                                <p className="text-[10px] font-bold tracking-[0.25em] text-white uppercase" style={{ fontFamily: 'Georgia, serif' }}>
+                                <p className="text-[10px] font-bold tracking-[0.25em] uppercase" style={{ fontFamily: 'Georgia, serif', color: '#FF8C00' }}>
                                     Reset your password
                                 </p>
                             </div>
@@ -145,15 +145,15 @@ export default function ForgotPassword() {
 
                                 {/* Email Address */}
                                 <div>
-                                    <label className="text-[10px] uppercase tracking-widest ml-1 text-white mb-2 block" style={{ fontFamily: 'Georgia, serif' }}>Email Address</label>
+                                    <label className="text-[10px] uppercase tracking-widest ml-1 text-white/90 font-bold mb-2 block" style={{ fontFamily: 'Georgia, serif' }}>Email Address</label>
                                     <div className="relative">
-                                        <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 transition-colors text-white" />
+                                        <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 transition-colors text-white/50" />
                                         <input
                                             type="email"
                                             placeholder="Enter your email"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
-                                            className="w-full pl-12 pr-4 py-3.5 rounded-xl text-sm outline-none transition-all border bg-white/5 border-white/20 text-white placeholder-white/30 focus:border-white"
+                                            className="w-full pl-12 pr-4 py-3.5 rounded-xl text-sm outline-none transition-all border bg-white/5 border-white/20 text-white placeholder-white/30 focus:border-[#FF8C00] focus:ring-1 focus:ring-[#FF8C00]/30"
                                             style={{ fontFamily: 'Georgia, serif' }}
                                         />
                                     </div>
@@ -162,15 +162,15 @@ export default function ForgotPassword() {
                                 <button
                                     type="submit"
                                     disabled={isLoading}
-                                    className="w-full py-3.5 mt-6 rounded-xl flex items-center justify-center gap-3 text-sm font-bold tracking-widest uppercase transition-all duration-300 disabled:opacity-60 text-black shadow-[0_10px_40px_rgba(255,215,0,0.15)] hover:shadow-[0_10px_50px_rgba(255,215,0,0.25)] hover:scale-[1.01] group"
-                                    style={{ fontFamily: 'Georgia, serif', background: goldGradient }}
+                                    className="w-full py-3.5 mt-6 rounded-xl flex items-center justify-center gap-3 text-sm font-bold tracking-widest uppercase transition-all duration-300 disabled:opacity-60 text-black hover:scale-[1.01] group"
+                                    style={{ fontFamily: 'Georgia, serif', background: brandGradient, boxShadow: `0 10px 40px ${brandGlow}` }}
                                 >
                                     {isLoading ? <Loader2 size={16} className="animate-spin" /> : <>Send Code <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" /></>}
                                 </button>
                             </form>
 
-                            <p className="text-center text-xs mt-10 text-white font-medium" style={{ fontFamily: 'Georgia, serif' }}>
-                                Remember your password? <Link to="/login" className="text-white hover:text-[#FFD700] border-b border-white hover:border-[#FFD700] pb-0.5 transition-all">Sign In</Link>
+                            <p className="text-center text-xs mt-10 text-white/80 font-medium" style={{ fontFamily: 'Georgia, serif' }}>
+                                Remember your password? <Link to="/login" className="text-white hover:text-[#FF8C00] border-b border-white hover:border-[#FF8C00] pb-0.5 transition-all">Sign In</Link>
                             </p>
                         </div>
                     </div>

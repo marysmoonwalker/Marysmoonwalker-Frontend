@@ -57,8 +57,8 @@ export default function Register() {
     };
 
     // Branding Tokens
-    const goldGradient = 'linear-gradient(to right, #FFD700, #FFA500)';
-    const goldGlow     = 'rgba(255, 215, 0, 0.3)';
+    const brandGradient = 'linear-gradient(135deg, #FF8C00 0%, #FFA000 50%, #FF7518 100%)';
+    const brandGlow     = 'rgba(255, 140, 0, 0.35)';
 
     return (
         <>
@@ -74,7 +74,7 @@ export default function Register() {
 
                 <Link
                     to="/"
-                    className="absolute top-8 left-6 flex items-center gap-2 text-xs uppercase tracking-widest z-10 text-white hover:text-[#FFD700] transition-colors"
+                    className="absolute top-8 left-6 flex items-center gap-2 text-xs uppercase tracking-widest z-10 text-white hover:text-[#FF8C00] transition-colors"
                     style={{ fontFamily: 'Georgia, serif' }}
                 >
                     <Home size={15} /> Home
@@ -86,7 +86,7 @@ export default function Register() {
                             className="text-xl font-light tracking-[0.2em] mb-2"
                             style={{
                                 fontFamily: 'Georgia, serif',
-                                background: goldGradient,
+                                background: brandGradient,
                                 WebkitBackgroundClip: 'text',
                                 WebkitTextFillColor: 'transparent',
                                 backgroundClip: 'text',
@@ -94,7 +94,7 @@ export default function Register() {
                         >
                             MARY'S MOONWALKER
                         </h1>
-                        <p className="text-[11px] uppercase tracking-[0.4em] text-white font-bold" style={{ fontFamily: 'Georgia, serif' }}>
+                        <p className="text-[11px] uppercase tracking-[0.4em] font-bold" style={{ fontFamily: 'Georgia, serif', color: '#FF8C00' }}>
                             Become a Moonwalker
                         </p>
                     </div>
@@ -109,13 +109,13 @@ export default function Register() {
                         {/* Full Name */}
                         <div>
                             <div className="relative">
-                                <User size={16} className="absolute left-4 top-1/2 -translate-y-1/2 transition-colors" style={{ color: errors.fullName ? '#ef4444' : 'white' }} />
+                                <User size={16} className="absolute left-4 top-1/2 -translate-y-1/2 transition-colors" style={{ color: errors.fullName ? '#ef4444' : 'rgba(255,255,255,0.6)' }} />
                                 <input
                                     type="text"
                                     placeholder="Full Name"
                                     value={form.fullName}
                                     onChange={(e) => setForm({ ...form, fullName: e.target.value })}
-                                    className="w-full pl-12 pr-4 py-4 rounded-xl text-sm outline-none transition-all border bg-white/5 border-white/20 text-white placeholder-white/30 focus:border-white"
+                                    className="w-full pl-12 pr-4 py-4 rounded-xl text-sm outline-none transition-all border bg-white/5 border-white/20 text-white placeholder-white/30 focus:border-[#FF8C00] focus:ring-1 focus:ring-[#FF8C00]/30"
                                     style={{ fontFamily: 'Georgia, serif', backdropFilter: 'blur(10px)' }}
                                 />
                             </div>
@@ -125,13 +125,13 @@ export default function Register() {
                         {/* Email Address */}
                         <div>
                             <div className="relative">
-                                <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 transition-colors" style={{ color: errors.email ? '#ef4444' : 'white' }} />
+                                <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 transition-colors" style={{ color: errors.email ? '#ef4444' : 'rgba(255,255,255,0.6)' }} />
                                 <input
                                     type="email"
                                     placeholder="Email Address"
                                     value={form.email}
                                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                                    className="w-full pl-12 pr-4 py-4 rounded-xl text-sm outline-none transition-all border bg-white/5 border-white/20 text-white placeholder-white/30 focus:border-white"
+                                    className="w-full pl-12 pr-4 py-4 rounded-xl text-sm outline-none transition-all border bg-white/5 border-white/20 text-white placeholder-white/30 focus:border-[#FF8C00] focus:ring-1 focus:ring-[#FF8C00]/30"
                                     style={{ fontFamily: 'Georgia, serif', backdropFilter: 'blur(10px)' }}
                                 />
                             </div>
@@ -141,16 +141,16 @@ export default function Register() {
                         {/* Create Password */}
                         <div>
                             <div className="relative">
-                                <Lock size={16} className="absolute left-4 top-1/2 -translate-y-1/2 transition-colors" style={{ color: errors.password ? '#ef4444' : 'white' }} />
+                                <Lock size={16} className="absolute left-4 top-1/2 -translate-y-1/2 transition-colors" style={{ color: errors.password ? '#ef4444' : 'rgba(255,255,255,0.6)' }} />
                                 <input
                                     type={showPassword ? 'text' : 'password'}
                                     placeholder="Create Password"
                                     value={form.password}
                                     onChange={(e) => setForm({ ...form, password: e.target.value })}
-                                    className="w-full pl-12 pr-12 py-4 rounded-xl text-sm outline-none transition-all border bg-white/5 border-white/20 text-white placeholder-white/30 focus:border-white"
+                                    className="w-full pl-12 pr-12 py-4 rounded-xl text-sm outline-none transition-all border bg-white/5 border-white/20 text-white placeholder-white/30 focus:border-[#FF8C00] focus:ring-1 focus:ring-[#FF8C00]/30"
                                     style={{ fontFamily: 'Georgia, serif', backdropFilter: 'blur(10px)' }}
                                 />
-                                <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-[#FFD700] transition-colors">
+                                <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/60 hover:text-[#FF8C00] transition-colors">
                                     {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                                 </button>
                             </div>
@@ -160,16 +160,16 @@ export default function Register() {
                         {/* Confirm Password */}
                         <div>
                             <div className="relative">
-                                <CheckCircle size={16} className="absolute left-4 top-1/2 -translate-y-1/2 transition-colors" style={{ color: errors.confirmPassword ? '#ef4444' : 'white' }} />
+                                <CheckCircle size={16} className="absolute left-4 top-1/2 -translate-y-1/2 transition-colors" style={{ color: errors.confirmPassword ? '#ef4444' : 'rgba(255,255,255,0.6)' }} />
                                 <input
                                     type={showConfirmPassword ? 'text' : 'password'}
                                     placeholder="Confirm Password"
                                     value={form.confirmPassword}
                                     onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
-                                    className="w-full pl-12 pr-12 py-4 rounded-xl text-sm outline-none transition-all border bg-white/5 border-white/20 text-white placeholder-white/30 focus:border-white"
+                                    className="w-full pl-12 pr-12 py-4 rounded-xl text-sm outline-none transition-all border bg-white/5 border-white/20 text-white placeholder-white/30 focus:border-[#FF8C00] focus:ring-1 focus:ring-[#FF8C00]/30"
                                     style={{ fontFamily: 'Georgia, serif', backdropFilter: 'blur(10px)' }}
                                 />
-                                <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-[#FFD700] transition-colors">
+                                <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/60 hover:text-[#FF8C00] transition-colors">
                                     {showConfirmPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                                 </button>
                             </div>
@@ -179,22 +179,22 @@ export default function Register() {
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className="w-full py-4 mt-2 rounded-xl flex items-center justify-center gap-3 text-sm font-bold tracking-widest uppercase transition-all duration-300 disabled:opacity-60 text-black group"
-                            style={{ fontFamily: 'Georgia, serif', background: goldGradient, boxShadow: `0 10px 40px ${goldGlow}` }}
+                            className="w-full py-4 mt-2 rounded-xl flex items-center justify-center gap-3 text-sm font-bold tracking-widest uppercase transition-all duration-300 disabled:opacity-60 text-black group hover:scale-[0.99] active:scale-[0.98]"
+                            style={{ fontFamily: 'Georgia, serif', background: brandGradient, boxShadow: `0 10px 40px ${brandGlow}` }}
                         >
                             {isLoading ? <Loader2 size={16} className="animate-spin" /> : <>Create Account <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" /></>}
                         </button>
                     </form>
 
-                    <p className="text-center text-xs mt-8 text-white font-medium" style={{ fontFamily: 'Georgia, serif' }}>
-                        Already a member? <Link to="/login" className="text-white border-b border-white hover:border-[#FFD700] hover:text-[#FFD700] pb-0.5 transition-all">Sign In</Link>
+                    <p className="text-center text-xs mt-8 text-white/80 font-medium" style={{ fontFamily: 'Georgia, serif' }}>
+                        Already a member? <Link to="/login" className="text-white border-b border-white hover:border-[#FF8C00] hover:text-[#FF8C00] pb-0.5 transition-all">Sign In</Link>
                     </p>
                 </div>
             </div>
 
             {/* ===================== DESKTOP LAYOUT ===================== */}
             <div className="hidden lg:flex h-screen w-full overflow-hidden bg-black relative">
-                <Link to="/" className="absolute top-8 left-8 flex items-center gap-2 text-white hover:text-[#FFD700] transition-colors text-xs uppercase tracking-widest z-[200]" style={{ fontFamily: 'Georgia, serif' }}>
+                <Link to="/" className="absolute top-8 left-8 flex items-center gap-2 text-white hover:text-[#FF8C00] transition-colors text-xs uppercase tracking-widest z-[200]" style={{ fontFamily: 'Georgia, serif' }}>
                     <Home size={16} /> Home
                 </Link>
 
@@ -202,22 +202,22 @@ export default function Register() {
                     <img src="https://i.pinimg.com/1200x/8e/cb/72/8ecb721fbc80ce1157f82f0ebf40f2f8.jpg" alt="Michael Jackson" className="absolute inset-0 w-full h-full object-cover opacity-80" />
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/50 to-black" />
                     <div className="absolute bottom-32 left-12">
-                        <p className="text-white text-xs font-light tracking-[0.3em] uppercase" style={{ fontFamily: 'Georgia, serif' }}>Mary's Moonwalker</p>
+                        <p className="text-xs font-bold tracking-[0.3em] uppercase" style={{ fontFamily: 'Georgia, serif', color: '#FF8C00' }}>Mary's Moonwalker</p>
                         <h2 className="text-white text-2xl font-light tracking-widest mt-2" style={{ fontFamily: 'Georgia, serif' }}>The King of Pop Lives Forever</h2>
                     </div>
                 </div>
 
                 <div className="w-1/2 flex items-center justify-center relative px-4">
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(255,215,0,0.05) 0%, transparent 60%)', filter: 'blur(40px)' }} />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(255,140,0,0.08) 0%, transparent 60%)', filter: 'blur(40px)' }} />
 
                     <div className="relative w-full max-w-md" style={{ animation: 'fadeInUp 0.6s ease-out both' }}>
                         
                         <div className="rounded-2xl px-8 py-10 bg-black/85 border border-white/10" style={{ backdropFilter: 'blur(24px)' }}>
                             <div className="text-center mb-8">
-                                <h1 className="text-xl font-light tracking-[0.2em] mb-1" style={{ fontFamily: 'Georgia, serif', background: goldGradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                                <h1 className="text-xl font-light tracking-[0.2em] mb-1" style={{ fontFamily: 'Georgia, serif', background: brandGradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                                     MARY'S MOONWALKER
                                 </h1>
-                                <p className="text-[10px] font-bold tracking-[0.25em] text-white uppercase" style={{ fontFamily: 'Georgia, serif' }}>
+                                <p className="text-[10px] font-bold tracking-[0.25em] uppercase" style={{ fontFamily: 'Georgia, serif', color: '#FF8C00' }}>
                                     Become a Moonwalker
                                 </p>
                             </div>
@@ -232,13 +232,13 @@ export default function Register() {
                                 {/* Full Name */}
                                 <div>
                                     <div className="relative">
-                                        <User size={16} className="absolute left-4 top-1/2 -translate-y-1/2 transition-colors" style={{ color: errors.fullName ? '#ef4444' : 'white' }} />
+                                        <User size={16} className="absolute left-4 top-1/2 -translate-y-1/2 transition-colors" style={{ color: errors.fullName ? '#ef4444' : 'rgba(255,255,255,0.5)' }} />
                                         <input
                                             type="text"
                                             placeholder="Full Name"
                                             value={form.fullName}
                                             onChange={(e) => setForm({ ...form, fullName: e.target.value })}
-                                            className="w-full pl-12 pr-4 py-3.5 rounded-xl text-sm outline-none transition-all border bg-white/5 border-white/20 text-white placeholder-white/30 focus:border-white"
+                                            className="w-full pl-12 pr-4 py-3.5 rounded-xl text-sm outline-none transition-all border bg-white/5 border-white/20 text-white placeholder-white/30 focus:border-[#FF8C00] focus:ring-1 focus:ring-[#FF8C00]/30"
                                             style={{ fontFamily: 'Georgia, serif' }}
                                         />
                                     </div>
@@ -248,13 +248,13 @@ export default function Register() {
                                 {/* Email Address */}
                                 <div>
                                     <div className="relative">
-                                        <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 transition-colors" style={{ color: errors.email ? '#ef4444' : 'white' }} />
+                                        <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 transition-colors" style={{ color: errors.email ? '#ef4444' : 'rgba(255,255,255,0.5)' }} />
                                         <input
                                             type="email"
                                             placeholder="Email Address"
                                             value={form.email}
                                             onChange={(e) => setForm({ ...form, email: e.target.value })}
-                                            className="w-full pl-12 pr-4 py-3.5 rounded-xl text-sm outline-none transition-all border bg-white/5 border-white/20 text-white placeholder-white/30 focus:border-white"
+                                            className="w-full pl-12 pr-4 py-3.5 rounded-xl text-sm outline-none transition-all border bg-white/5 border-white/20 text-white placeholder-white/30 focus:border-[#FF8C00] focus:ring-1 focus:ring-[#FF8C00]/30"
                                             style={{ fontFamily: 'Georgia, serif' }}
                                         />
                                     </div>
@@ -264,16 +264,16 @@ export default function Register() {
                                 {/* Create Password */}
                                 <div>
                                     <div className="relative">
-                                        <Lock size={16} className="absolute left-4 top-1/2 -translate-y-1/2 transition-colors" style={{ color: errors.password ? '#ef4444' : 'white' }} />
+                                        <Lock size={16} className="absolute left-4 top-1/2 -translate-y-1/2 transition-colors" style={{ color: errors.password ? '#ef4444' : 'rgba(255,255,255,0.5)' }} />
                                         <input
                                             type={showPassword ? 'text' : 'password'}
                                             placeholder="Create Password"
                                             value={form.password}
                                             onChange={(e) => setForm({ ...form, password: e.target.value })}
-                                            className="w-full pl-12 pr-12 py-3.5 rounded-xl text-sm outline-none transition-all border bg-white/5 border-white/20 text-white placeholder-white/30 focus:border-white"
+                                            className="w-full pl-12 pr-12 py-3.5 rounded-xl text-sm outline-none transition-all border bg-white/5 border-white/20 text-white placeholder-white/30 focus:border-[#FF8C00] focus:ring-1 focus:ring-[#FF8C00]/30"
                                             style={{ fontFamily: 'Georgia, serif' }}
                                         />
-                                        <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-[#FFD700] transition-colors">
+                                        <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-[#FF8C00] transition-colors">
                                             {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                                         </button>
                                     </div>
@@ -283,16 +283,16 @@ export default function Register() {
                                 {/* Confirm Password */}
                                 <div>
                                     <div className="relative">
-                                        <CheckCircle size={16} className="absolute left-4 top-1/2 -translate-y-1/2 transition-colors" style={{ color: errors.confirmPassword ? '#ef4444' : 'white' }} />
+                                        <CheckCircle size={16} className="absolute left-4 top-1/2 -translate-y-1/2 transition-colors" style={{ color: errors.confirmPassword ? '#ef4444' : 'rgba(255,255,255,0.5)' }} />
                                         <input
                                             type={showConfirmPassword ? 'text' : 'password'}
                                             placeholder="Confirm Password"
                                             value={form.confirmPassword}
                                             onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
-                                            className="w-full pl-12 pr-12 py-3.5 rounded-xl text-sm outline-none transition-all border bg-white/5 border-white/20 text-white placeholder-white/30 focus:border-white"
+                                            className="w-full pl-12 pr-12 py-3.5 rounded-xl text-sm outline-none transition-all border bg-white/5 border-white/20 text-white placeholder-white/30 focus:border-[#FF8C00] focus:ring-1 focus:ring-[#FF8C00]/30"
                                             style={{ fontFamily: 'Georgia, serif' }}
                                         />
-                                        <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-[#FFD700] transition-colors">
+                                        <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-[#FF8C00] transition-colors">
                                             {showConfirmPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                                         </button>
                                     </div>
@@ -302,15 +302,15 @@ export default function Register() {
                                 <button
                                     type="submit"
                                     disabled={isLoading}
-                                    className="w-full py-3.5 mt-4 rounded-xl flex items-center justify-center gap-3 text-sm font-bold tracking-widest uppercase transition-all duration-300 disabled:opacity-60 text-black shadow-[0_10px_40px_rgba(255,215,0,0.15)] hover:shadow-[0_10px_50px_rgba(255,215,0,0.25)] hover:scale-[1.01] group"
-                                    style={{ fontFamily: 'Georgia, serif', background: goldGradient }}
+                                    className="w-full py-3.5 mt-4 rounded-xl flex items-center justify-center gap-3 text-sm font-bold tracking-widest uppercase transition-all duration-300 disabled:opacity-60 text-black hover:scale-[1.01] group"
+                                    style={{ fontFamily: 'Georgia, serif', background: brandGradient, boxShadow: `0 10px 40px ${brandGlow}` }}
                                 >
                                     {isLoading ? <Loader2 size={16} className="animate-spin" /> : <>Create Account <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" /></>}
                                 </button>
                             </form>
 
-                            <p className="text-center text-xs mt-8 text-white font-medium" style={{ fontFamily: 'Georgia, serif' }}>
-                                Already a member? <Link to="/login" className="text-white hover:text-[#FFD700] border-b border-white hover:border-[#FFD700] pb-0.5 transition-all">Sign In</Link>
+                            <p className="text-center text-xs mt-8 text-white/80 font-medium" style={{ fontFamily: 'Georgia, serif' }}>
+                                Already a member? <Link to="/login" className="text-white hover:text-[#FF8C00] border-b border-white hover:border-[#FF8C00] pb-0.5 transition-all">Sign In</Link>
                             </p>
                         </div>
                     </div>

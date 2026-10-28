@@ -175,6 +175,8 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PostService, IPost } from '../services/post.service';
 import { fallbackTrendingPosts } from '../components/fallback/Trending';
+import { useHalloween } from './halloween/HalloweenContext';
+import { JackOLantern, BatIcon } from './halloween/HalloweenIcons';
 
 const FONT = 'Georgia, serif';
 const MONO = '"Courier New", Courier, monospace';
@@ -248,9 +250,23 @@ function getPostUrl(post: IPost) {
     return `/articles/${post.slug}`;
 }
 
+function HalloweenStoriesBadge() {
+    const { isHalloween } = useHalloween();
+    if (!isHalloween) return null;
+    return (
+        <span
+            className="inline-flex items-center gap-1.5 text-[10px] md:text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-[#FF7518]/15 border border-[#FF7518]/40 text-[#FFA333]"
+            style={{ fontFamily: MONO }}
+        >
+            <JackOLantern size={13} glow={true} /> Spooky Picks
+        </span>
+    );
+}
+
 // ─── Blog Card Component ──────────────────────────────────────────────────────
 
 function BlogCard({ post, isFeatured }: { post: IPost; isFeatured?: boolean }) {
+    const { isHalloween } = useHalloween();
     const date = new Date(post.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
     const authorImage = post.author?.avatar || `https://api.dicebear.com/7.x/notionists/svg?seed=${post._id}`;
 
@@ -266,15 +282,23 @@ function BlogCard({ post, isFeatured }: { post: IPost; isFeatured?: boolean }) {
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
 
+            {/* Top right bat watermark on card when Halloween is active */}
+            {isHalloween && (
+                <div className="absolute top-4 right-4 z-10 text-white/40 group-hover:text-[#FF7518] transition-colors duration-300">
+                    <BatIcon size={24} />
+                </div>
+            )}
+
             <div className="absolute inset-0 flex flex-col justify-end p-[18px] md:p-6 transition-colors duration-300">
 
                 {post.category?.name && (
                     <>
                         <style>{`.pill-hover:hover { background-color: white !important; color: ${ACCENT_COLOR} !important; }`}</style>
                         <span
-                            className="pill-hover text-white px-2.5 py-1 w-fit rounded-[6px] font-bold text-[11px] mb-[10px] transition-colors duration-200"
+                            className="pill-hover text-white px-2.5 py-1 w-fit rounded-[6px] font-bold text-[11px] mb-[10px] transition-colors duration-200 inline-flex items-center gap-1.5"
                             style={{ backgroundColor: ACCENT_COLOR, fontFamily: MONO }}
                         >
+                            {isHalloween && <JackOLantern size={12} glow={false} />}
                             {post.category.name}
                         </span>
                     </>
@@ -341,9 +365,12 @@ export default function TrendingPage() {
 
                 {/* Header */}
                 <div className="mb-10 flex items-end justify-between border-b pb-4" style={{ borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}>
-                    <h1 className="text-2xl md:text-3xl font-bold" style={{ color: textColor, fontFamily: FONT }}>
-                        Top Stories
-                    </h1>
+                    <div className="flex items-center gap-3">
+                        <h1 className="text-2xl md:text-3xl font-bold" style={{ color: textColor, fontFamily: FONT }}>
+                            Top Stories
+                        </h1>
+                        <HalloweenStoriesBadge />
+                    </div>
                     {isFetching && (
                         <span className="text-[12px] font-semibold text-gray-500 animate-pulse" style={{ fontFamily: MONO }}>
                             Loading latest...

@@ -1,0 +1,268 @@
+/* ==========================================================================
+   FULL IMMERSIVE HALLOWEEN "THRILLER NIGHT" THEME
+   Strictly scoped under .halloween-active to guarantee full reversibility.
+   ========================================================================== */
+
+.halloween-active {
+  --pumpkin-primary: #FF7518;
+  --pumpkin-glow: rgba(255, 117, 24, 0.65);
+  --pumpkin-dark: #C44600;
+  --thriller-purple: #9D4EDD;
+  --thriller-purple-glow: rgba(157, 78, 221, 0.5);
+  --toxic-green: #39FF14;
+  --toxic-green-glow: rgba(57, 255, 20, 0.4);
+  --crypt-bg: #070709;
+}
+
+/* ── 1. Full Haunted Ambiance Background ─────────────────────────────────── */
+.halloween-active body,
+.halloween-active .bg-mj-black {
+  background-color: #070709 !important;
+  background-image: 
+    radial-gradient(ellipse at 50% 0%, rgba(255, 117, 24, 0.18) 0%, rgba(123, 44, 191, 0.12) 35%, rgba(7, 7, 9, 0.95) 70%),
+    radial-gradient(circle at 15% 45%, rgba(157, 78, 221, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 65%, rgba(255, 117, 24, 0.08) 0%, transparent 45%) !important;
+  background-attachment: fixed !important;
+}
+
+/* ── 2. Spooky Halloween Cursors ─────────────────────────────────────────── */
+.halloween-active,
+.halloween-active * {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><text y="22" font-size="22">🎃</text></svg>') 14 14, auto !important;
+}
+
+.halloween-active a,
+.halloween-active button,
+.halloween-active .clickable,
+.halloween-active input,
+.halloween-active [role="button"] {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><text y="26" font-size="26">🦇</text></svg>') 16 16, pointer !important;
+}
+
+/* ── 3. Spooky Buttons Overhaul ─────────────────────────────────────────── */
+.halloween-active .halloween-btn {
+  background: linear-gradient(135deg, #FF7518 0%, #E65100 60%, #B71C1C 100%) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 0 0 15px rgba(255, 117, 24, 0.8), 0 0 30px rgba(157, 78, 221, 0.4) !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  overflow: hidden;
+}
+
+.halloween-active .halloween-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 25px rgba(255, 117, 24, 1), 0 0 50px rgba(157, 78, 221, 0.7) !important;
+  filter: brightness(1.15);
+}
+
+/* ── 4. Card Borders and Spooky Glows ───────────────────────────────────── */
+.halloween-active .halloween-card,
+.halloween-active .card {
+  border: 1px solid rgba(255, 117, 24, 0.25) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), inset 0 0 20px rgba(255, 117, 24, 0.04) !important;
+  transition: all 0.4s ease !important;
+}
+
+.halloween-active .halloween-card:hover,
+.halloween-active .card:hover {
+  border-color: #FF7518 !important;
+  box-shadow: 0 0 30px rgba(255, 117, 24, 0.6), 0 0 60px rgba(157, 78, 221, 0.4) !important;
+  transform: translateY(-6px);
+}
+
+/* Ensure navigation, logo, and links never receive card borders */
+.halloween-active nav *,
+.halloween-active header *,
+.halloween-active [role="navigation"] * {
+  border-color: inherit;
+}
+
+
+/* ── 5. Eerie Headings & Text Shadows ───────────────────────────────────── */
+.halloween-active h1,
+.halloween-active h2 {
+  text-shadow: 0 0 25px rgba(255, 117, 24, 0.5), 0 0 50px rgba(157, 78, 221, 0.3);
+}
+
+/* ── 6. Jack-o'-Lantern Candle Flame Flicker ─────────────────────────────── */
+@keyframes pumpkinFlicker {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(255, 117, 24, 0.9)) drop-shadow(0 0 20px rgba(255, 163, 51, 0.7));
+    transform: scale(1);
+  }
+  20% {
+    filter: drop-shadow(0 0 5px rgba(255, 117, 24, 0.65)) drop-shadow(0 0 12px rgba(255, 140, 0, 0.4));
+    transform: scale(0.99);
+  }
+  45% {
+    filter: drop-shadow(0 0 12px rgba(255, 117, 24, 1)) drop-shadow(0 0 30px rgba(255, 163, 51, 0.85));
+    transform: scale(1.02);
+  }
+  70% {
+    filter: drop-shadow(0 0 6px rgba(255, 117, 24, 0.7)) drop-shadow(0 0 16px rgba(255, 140, 0, 0.5));
+    transform: scale(1);
+  }
+}
+
+.halloween-active .pumpkin-glow {
+  animation: pumpkinFlicker 2.5s infinite ease-in-out;
+}
+
+/* ── 7. Ghost Floating Animations ────────────────────────────────────────── */
+@keyframes ghostDrift {
+  0%, 100% {
+    transform: translate(0, 0) rotate(-2deg);
+    opacity: 0.75;
+  }
+  33% {
+    transform: translate(25px, -35px) rotate(3deg);
+    opacity: 0.9;
+  }
+  66% {
+    transform: translate(-20px, -60px) rotate(-1deg);
+    opacity: 0.65;
+  }
+}
+
+.halloween-active .ghost-float-1 {
+  animation: ghostDrift 14s infinite ease-in-out;
+}
+
+.halloween-active .ghost-float-2 {
+  animation: ghostDrift 18s infinite ease-in-out 5s;
+}
+
+/* ── 8. Bat Swarm & Rapid Wing Flap ──────────────────────────────────────── */
+@keyframes batFlap {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.25);
+  }
+}
+
+.halloween-active .bat-wings {
+  transform-origin: center;
+  animation: batFlap 0.18s infinite ease-in-out alternate;
+}
+
+@keyframes batFlySwarm1 {
+  0% {
+    transform: translate(-10vw, 12vh) scale(0.7) rotate(15deg);
+    opacity: 0;
+  }
+  10% { opacity: 0.85; }
+  90% { opacity: 0.85; }
+  100% {
+    transform: translate(110vw, -15vh) scale(0.9) rotate(-10deg);
+    opacity: 0;
+  }
+}
+
+@keyframes batFlySwarm2 {
+  0% {
+    transform: translate(110vw, 25vh) scale(0.55) rotate(-20deg);
+    opacity: 0;
+  }
+  15% { opacity: 0.8; }
+  85% { opacity: 0.8; }
+  100% {
+    transform: translate(-10vw, 5vh) scale(0.8) rotate(12deg);
+    opacity: 0;
+  }
+}
+
+@keyframes batFlySwarm3 {
+  0% {
+    transform: translate(20vw, 105vh) scale(0.6) rotate(25deg);
+    opacity: 0;
+  }
+  15% { opacity: 0.75; }
+  85% { opacity: 0.75; }
+  100% {
+    transform: translate(80vw, -15vh) scale(0.85) rotate(-8deg);
+    opacity: 0;
+  }
+}
+
+.halloween-active .bat-flight-1 {
+  animation: batFlySwarm1 16s infinite linear;
+}
+
+.halloween-active .bat-flight-2 {
+  animation: batFlySwarm2 22s infinite linear 4s;
+}
+
+.halloween-active .bat-flight-3 {
+  animation: batFlySwarm3 19s infinite linear 9s;
+}
+
+/* ── 9. Spooky Floating Embers / Fireflies ─────────────────────────────────── */
+@keyframes emberRise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-80vh) scale(0.4);
+    opacity: 0;
+  }
+}
+
+.halloween-active .ember-particle {
+  animation: emberRise 12s infinite ease-out;
+}
+
+/* ── 10. Blood Moon Pulse ────────────────────────────────────────────────── */
+@keyframes moonPulse {
+  0%, 100% {
+    box-shadow: 0 0 50px rgba(255, 117, 24, 0.4), 0 0 100px rgba(255, 80, 0, 0.2);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 80px rgba(255, 117, 24, 0.65), 0 0 150px rgba(255, 80, 0, 0.35);
+    transform: scale(1.03);
+  }
+}
+
+.halloween-active .blood-moon {
+  animation: moonPulse 6s infinite ease-in-out;
+}
+
+/* ── 11. Rolling Fog Effect ──────────────────────────────────────────────── */
+@keyframes rollingFog {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-25%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.halloween-active .fog-layer {
+  animation: rollingFog 35s infinite linear;
+}
+
+/* ── 12. Respect Reduced Motion ──────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .halloween-active .bat-flight-1,
+  .halloween-active .bat-flight-2,
+  .halloween-active .bat-flight-3,
+  .halloween-active .bat-wings,
+  .halloween-active .pumpkin-glow,
+  .halloween-active .ghost-float-1,
+  .halloween-active .ghost-float-2,
+  .halloween-active .ember-particle,
+  .halloween-active .blood-moon,
+  .halloween-active .fog-layer {
+    animation: none !important;
+  }
+}

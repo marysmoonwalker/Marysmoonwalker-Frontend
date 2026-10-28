@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { PostService, IPost } from '../services/post.service';
+import { useHalloween } from './halloween/HalloweenContext';
+import { JackOLantern, BatIcon } from './halloween/HalloweenIcons';
 
 const FONT = 'Georgia, serif';
 const MONO = '"Courier New", Courier, monospace';
@@ -30,6 +32,7 @@ function useTheme() {
 
 export default function StoriesSection() {
     const isDark = useTheme();
+    const { isHalloween } = useHalloween();
     const [posts, setPosts] = useState<IPost[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -58,10 +61,15 @@ export default function StoriesSection() {
                 <div className="mb-12 flex items-end justify-between border-b pb-4" style={{ borderColor }}>
                     <div>
                         <h2 
-                            className="text-2xl md:text-3xl font-bold mb-1" 
+                            className="text-2xl md:text-3xl font-bold mb-1 flex items-center gap-2.5" 
                             style={{ color: textColor, fontFamily: FONT }}
                         >
-                            Stories
+                            <span>Stories</span>
+                            {isHalloween && (
+                                <span className="inline-block hover:scale-125 transition-transform" title="Spooky Stories">
+                                    <JackOLantern size={22} glow={true} />
+                                </span>
+                            )}
                         </h2>
                         <p 
                             className="text-[11px] font-bold uppercase tracking-widest"
@@ -97,6 +105,11 @@ export default function StoriesSection() {
                                         Featured
                                     </span>
                                 </div>
+                                {isHalloween && (
+                                    <div className="absolute top-5 right-5 text-white/50 group-hover:text-[#FF7518] transition-colors">
+                                        <BatIcon size={26} />
+                                    </div>
+                                )}
                             </div>
                             
                             <div className="px-1">

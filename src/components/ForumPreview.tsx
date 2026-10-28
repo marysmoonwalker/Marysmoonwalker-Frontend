@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { ArrowRight, Loader2 } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { forumApi, IForumThread } from '../services/forum.service';
+import { useHalloween } from './halloween/HalloweenContext';
+import { JackOLantern, SkullIcon } from './halloween/HalloweenIcons';
 
 const FONT = 'Georgia, serif';
 const MONO = '"Courier New", Courier, monospace';
@@ -26,6 +28,7 @@ function useTheme() {
 
 export default function ForumPreview() {
     const isDark = useTheme();
+    const { isHalloween } = useHalloween();
     const [threads, setThreads] = useState<IForumThread[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -60,8 +63,13 @@ export default function ForumPreview() {
                 {/* Header */}
                 <div className="mb-10 border-b pb-4 flex justify-between items-end" style={{ borderColor }}>
                     <div>
-                        <h2 className="text-2xl font-bold mb-1" style={{ color: textColor, fontFamily: FONT }}>
-                            Community
+                        <h2 className="text-2xl font-bold mb-1 flex items-center gap-2" style={{ color: textColor, fontFamily: FONT }}>
+                            <span>Community</span>
+                            {isHalloween && (
+                                <span className="inline-block hover:scale-125 transition-transform" title="Halloween Community Dialogue">
+                                    <JackOLantern size={20} glow={true} />
+                                </span>
+                            )}
                         </h2>
                         <p className="text-[9px] font-bold uppercase tracking-[0.3em] opacity-40" style={{ color: textColor, fontFamily: MONO }}>
                             The Global Dialogue
@@ -85,6 +93,11 @@ export default function ForumPreview() {
                             className="group block relative p-6 md:p-8 rounded-[20px] border transition-all duration-500 hover:border-orange-500/30"
                             style={{ backgroundColor: cardBg, borderColor }}
                         >
+                            {isHalloween && (
+                                <div className="absolute top-4 right-4 text-white/40 group-hover:text-[#FF7518] transition-colors">
+                                    <SkullIcon size={20} glow={true} />
+                                </div>
+                            )}
                             <span className="text-[9px] font-bold uppercase tracking-[0.2em] mb-3 block" style={{ color: ACCENT_COLOR, fontFamily: MONO }}>
                                 {featuredThread.category}
                             </span>

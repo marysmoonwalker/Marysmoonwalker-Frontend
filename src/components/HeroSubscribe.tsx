@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { ArrowRight, Loader2 } from 'lucide-react';
 import { outreachApi } from '../services/outreach.service';
+import { HalloweenHeroDeco } from './halloween/HalloweenHeroDeco';
+import { useHalloween } from './halloween/HalloweenContext';
 
 const FONT = 'Georgia, serif';
 const MONO = '"Courier New", Courier, monospace';
@@ -34,15 +36,16 @@ function useTheme() {
 
 export default function SubscribeBar() {
     const isDark = useTheme();
+    const { isHalloween } = useHalloween();
 
-    const [email, setEmail]               = useState('');
+    const [email, setEmail] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [feedback, setFeedback]         = useState({ text: '', type: '' });
+    const [feedback, setFeedback] = useState({ text: '', type: '' });
 
-    const bg          = isDark ? '#0A0A0A' : '#F8F9FA';
-    const textColor   = isDark ? '#FFFFFF' : '#111111';
-    const mutedText   = isDark ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.6)';
-    const inputBg     = isDark ? 'rgba(255,255,255,0.03)' : '#FFFFFF';
+    const bg = isDark ? '#0A0A0A' : '#F8F9FA';
+    const textColor = isDark ? '#FFFFFF' : '#111111';
+    const mutedText = isDark ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.6)';
+    const inputBg = isDark ? 'rgba(255,255,255,0.03)' : '#FFFFFF';
     const inputBorder = isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.15)';
 
     const handleSubscribe = async (e: React.FormEvent) => {
@@ -70,6 +73,7 @@ export default function SubscribeBar() {
     return (
         <section className="pt-28 pb-12 transition-colors duration-500" style={{ backgroundColor: bg }}>
             <div className="max-w-7xl mx-auto px-6">
+                <HalloweenHeroDeco />
 
                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-12">
 
@@ -78,7 +82,10 @@ export default function SubscribeBar() {
                         className="text-base md:text-lg w-full md:w-[45%] leading-relaxed"
                         style={{ color: mutedText, fontFamily: FONT }}
                     >
-                        Subscribe to receive exclusive stories, updates, and media directly to your inbox.
+                        {isHalloween
+                            ? "Subscribe to receive exclusive Thriller stories, rare vault archives, and Michael Jackson Halloween specials directly to your inbox."
+                            : "Subscribe to receive exclusive stories, updates, and media directly to your inbox."
+                        }
                     </p>
 
                     {/* Right: Form + Feedback */}
@@ -86,32 +93,44 @@ export default function SubscribeBar() {
                         <form onSubmit={handleSubscribe} className="relative flex items-center">
                             <input
                                 type="email"
-                                placeholder="Your Email Address"
+                                placeholder={isHalloween ? "Enter your email... if you dare 🦇" : "Your Email Address"}
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
                                 autoComplete="email"
                                 disabled={isSubmitting}
-                                className="w-full pl-6 pr-[140px] py-4 rounded-full outline-none transition-all duration-300 disabled:opacity-50"
+                                className="w-full pl-6 pr-[155px] py-4 rounded-full outline-none transition-all duration-300 disabled:opacity-50"
                                 style={{
                                     backgroundColor: inputBg,
-                                    border:          `1px solid ${inputBorder}`,
-                                    color:           textColor,
-                                    fontFamily:      MONO,
-                                    fontSize:        '13px',
+                                    border: isHalloween ? '1px solid rgba(255, 117, 24, 0.5)' : `1px solid ${inputBorder}`,
+                                    color: textColor,
+                                    fontFamily: MONO,
+                                    fontSize: '13px',
+                                    boxShadow: isHalloween ? '0 0 15px rgba(255, 117, 24, 0.2)' : 'none',
                                 }}
                                 onFocus={(e) => e.target.style.borderColor = ACCENT_COLOR}
-                                onBlur={(e)  => e.target.style.borderColor = inputBorder}
+                                onBlur={(e) => e.target.style.borderColor = isHalloween ? 'rgba(255, 117, 24, 0.5)' : inputBorder}
                             />
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="absolute right-1.5 top-1.5 bottom-1.5 px-6 rounded-full flex items-center gap-2 font-bold uppercase tracking-widest transition-all duration-300 hover:scale-[0.98] disabled:opacity-70 disabled:hover:scale-100"
-                                style={{ backgroundColor: ACCENT_COLOR, color: '#000000', fontFamily: MONO, fontSize: '11px' }}
+                                className="px-5 rounded-full flex items-center justify-center gap-2 font-bold uppercase tracking-widest transition-all duration-300 hover:scale-[0.98] disabled:opacity-70 disabled:hover:scale-100 whitespace-nowrap z-10"
+                                style={{
+                                    position: 'absolute',
+                                    right: '6px',
+                                    top: '6px',
+                                    bottom: '6px',
+                                    backgroundColor: ACCENT_COLOR,
+                                    color: '#000000',
+                                    fontFamily: MONO,
+                                    fontSize: '11px',
+                                    boxShadow: isHalloween ? '0 0 15px rgba(255, 117, 24, 0.7)' : 'none',
+                                    border: 'none',
+                                }}
                             >
                                 {isSubmitting
                                     ? <Loader2 size={14} className="animate-spin" />
-                                    : <><span>Subscribe</span><ArrowRight size={14} strokeWidth={2.5} /></>
+                                    : <><span>{isHalloween ? 'Join In 🎃' : 'Subscribe'}</span><ArrowRight size={14} strokeWidth={2.5} /></>
                                 }
                             </button>
                         </form>
