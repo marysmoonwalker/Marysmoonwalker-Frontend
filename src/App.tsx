@@ -15,7 +15,6 @@ import TheEras from './components/TheEras';
 import Blogs from './components/Blogs';
 import { SpookyAtmosphere } from './components/halloween/SpookyAtmosphere';
 
-
 // ─ PAGES ─
 import BlogPage from './components/BlogPage';
 import PostDetail from './components/PostDetail';

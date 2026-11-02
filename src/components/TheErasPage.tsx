@@ -6,7 +6,6 @@ const FONT = 'Georgia, serif';
 const MONO = '"Courier New", Courier, monospace';
 const ACCENT_COLOR = '#FF8C00';
 
-// ─── Theme Hook ───────────────────────────────────────────────────────────────
 
 function useTheme() {
     const [isDark, setIsDark] = useState<boolean>(() => {
@@ -34,7 +33,6 @@ function useTheme() {
     return isDark;
 }
 
-// ─── Timeline Data ────────────────────────────────────────────────────────────
 
 const timelineItems = [
     {
@@ -42,14 +40,12 @@ const timelineItems = [
         title: 'The Thriller Phenomenon',
         year: '1982',
         image: 'https://i.pinimg.com/originals/fb/4d/fd/fb4dfd4e2c955ca3716e6f804043f0dc.gif',
-        // image: 'https://images.unsplash.com/photo-1598387181032-a3103a2db5b3?q=80&w=1000&auto=format&fit=crop',
         excerpt: 'The album that broke all barriers, redefined the music video, and became the highest-selling record in human history.',
     },
     {
         id: 'moonwalk',
         title: 'The Moonwalk Debut',
         year: '1983',
-        // image: 'https://images.unsplash.com/photo-1547153760-18fc86324498?q=80&w=1000&auto=format&fit=crop',
         image: 'https://i.pinimg.com/736x/a5/25/d5/a525d5da6d17005ef0c21dd8f2dbd4e2.jpg',
         excerpt: 'One televised performance that birthed the most imitated dance move in human history and cemented his crown.',
     },
@@ -57,7 +53,6 @@ const timelineItems = [
         id: 'billie-jean',
         title: 'The Billie Jean Revolution',
         year: '1983',
-        // image: 'https://images.unsplash.com/photo-1516280440502-a2f1c841e737?q=80&w=1000&auto=format&fit=crop',
         image: 'https://i.pinimg.com/736x/2e/cc/61/2ecc619e9fdd2c83560f295ee63d1ab4.jpg',
         excerpt: 'The iconic bassline, the glowing sidewalk, and the song that single-handedly broke MTVs color barrier.',
     },
@@ -72,7 +67,6 @@ const timelineItems = [
         id: 'bad',
         title: 'The Bad Era',
         year: '1987',
-        // image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1000&auto=format&fit=crop',
         image: 'https://i.pinimg.com/1200x/98/3a/54/983a5425462a73028421d5a9e4e97181.jpg',
         excerpt: 'Edgier, sharper, and producing a record five consecutive #1 Billboard hits, proving he was peerless.',
     },
@@ -81,12 +75,10 @@ const timelineItems = [
         title: 'Dangerous World Tour',
         year: '1992',
         image: 'https://i.pinimg.com/736x/39/e4/18/39e418e97880a073d9fe8068d82452dc.jpg',
-        // image: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=1000&auto=format&fit=crop',
         excerpt: 'A breathtaking theatrical spectacle that pushed the boundaries of live performance and donated all profits to charity.',
     }
 ];
 
-// ─── Main Timeline Page Component ─────────────────────────────────────────────
 
 export default function LegacyTimelinePage() {
     const isDark = useTheme();

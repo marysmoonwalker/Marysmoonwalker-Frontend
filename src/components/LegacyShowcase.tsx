@@ -6,7 +6,6 @@ const FONT = 'Georgia, serif';
 const MONO = '"Courier New", Courier, monospace';
 const ACCENT_COLOR = '#FF8C00'; // Bright Golden Chocolate
 
-// ─── Theme Hook ───────────────────────────────────────────────────────────────
 
 function useTheme() {
     const [isDark, setIsDark] = useState<boolean>(() => {
@@ -34,7 +33,6 @@ function useTheme() {
     return isDark;
 }
 
-// ─── Data Interfaces & Array ──────────────────────────────────────────────────
 
 export interface LegacyDetail {
     name: string;
@@ -119,7 +117,6 @@ export const legacyItems: LegacyItem[] = [
     },
 ];
 
-// ─── Legacy Card Component ────────────────────────────────────────────────────
 
 function LegacyCard({ item }: { item: LegacyItem }) {
     return (
@@ -180,7 +177,6 @@ function LegacyCard({ item }: { item: LegacyItem }) {
     );
 }
 
-// ─── Main Showcase Component ──────────────────────────────────────────────────
 
 export default function LegacyShowcase() {
     const isDark = useTheme();

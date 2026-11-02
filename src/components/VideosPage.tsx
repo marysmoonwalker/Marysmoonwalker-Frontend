@@ -7,7 +7,6 @@ const FONT = 'Georgia, serif';
 const MONO = '"Courier New", Courier, monospace';
 const ACCENT_COLOR = '#FF8C00';
 
-// ─── Theme Hook ───────────────────────────────────────────────────────────────
 
 function useTheme() {
     const [isDark, setIsDark] = useState<boolean>(() => {
@@ -26,7 +25,6 @@ function useTheme() {
     return isDark;
 }
 
-// ─── Utility ──────────────────────────────────────────────────────────────────
 
 function formatDuration(seconds?: number): string {
     if (!seconds) return '';
@@ -55,7 +53,6 @@ function timeAgo(dateString: string) {
     return `${years} years ago`;
 }
 
-// ─── True YouTube-Style Video Card ────────────────────────────────────────────
 
 function VideoCard({ post, textColor, borderColor }: { post: IPost, textColor: string, borderColor: string }) {
     const duration = formatDuration(post.duration as any);
@@ -137,7 +134,6 @@ function VideoCard({ post, textColor, borderColor }: { post: IPost, textColor: s
     );
 }
 
-// ─── Main Videos Page Component ───────────────────────────────────────────────
 
 export default function VideosPage() {
     const isDark = useTheme();

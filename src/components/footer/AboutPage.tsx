@@ -6,7 +6,6 @@ const FONT = 'Georgia, serif';
 const MONO = '"Courier New", Courier, monospace';
 const ACCENT_COLOR = '#FF8C00';
 
-// ─── Theme Hook ───────────────────────────────────────────────────────────────
 
 function useTheme() {
     const [isDark, setIsDark] = useState<boolean>(() => {
@@ -34,7 +33,6 @@ function useTheme() {
     return isDark;
 }
 
-// ─── Main About Page Component ────────────────────────────────────────────────
 
 export default function AboutPage() {
     const isDark = useTheme();

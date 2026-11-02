@@ -9,7 +9,6 @@ const ACCENT_COLOR = '#FF8C00';
 
 const postCache: Record<string, IPost> = {};
 
-// ─── Theme Hook ───────────────────────────────────────────────────────────────
 
 function useTheme() {
     const [isDark, setIsDark] = useState<boolean>(() => {
@@ -37,7 +36,6 @@ function useTheme() {
     return isDark;
 }
 
-// ─── Utility Functions ────────────────────────────────────────────────────────
 
 function extractYouTubeId(url?: string): string {
     if (!url) return '';
@@ -57,7 +55,6 @@ function getSpotifyType(url?: string): string {
     return match ? match[1] : 'episode';
 }
 
-// ─── Section Renderer ─────────────────────────────────────────────────────────
 
 interface SectionProps {
     section: IPostSection;
@@ -182,7 +179,6 @@ function RenderSection({ section, idx, postTitle, textColor, borderColor }: Sect
     return null;
 }
 
-// ─── Main Post Detail Component ───────────────────────────────────────────────
 
 export default function PostDetail() {
     const isDark = useTheme();

@@ -7,7 +7,6 @@ const FONT = 'Georgia, serif';
 const MONO = '"Courier New", Courier, monospace';
 const ACCENT_COLOR = '#FF8C00';
 
-// ─── Theme Hook ───────────────────────────────────────────────────────────────
 
 function useTheme() {
     const [isDark, setIsDark] = useState<boolean>(() => {
@@ -26,7 +25,6 @@ function useTheme() {
     return isDark;
 }
 
-// ─── Featured Hero Card (Post 0) ──────────────────────────────────────────────
 
 function FeaturedCard({ post, textColor, borderColor }: { post: IPost, textColor: string, borderColor: string }) {
     const date = new Date(post.createdAt).toLocaleDateString('en-US', {
@@ -78,7 +76,6 @@ function FeaturedCard({ post, textColor, borderColor }: { post: IPost, textColor
     );
 }
 
-// ─── Standard Grid Card (Posts 1+) ────────────────────────────────────────────
 
 function ContentCard({ post, textColor, borderColor }: { post: IPost, textColor: string, borderColor: string }) {
     const date = new Date(post.createdAt).toLocaleDateString('en-US', {
@@ -125,7 +122,6 @@ function ContentCard({ post, textColor, borderColor }: { post: IPost, textColor:
     );
 }
 
-// ─── Main Blog Page Component ─────────────────────────────────────────────────
 
 export default function BlogPage() {
     const isDark = useTheme();

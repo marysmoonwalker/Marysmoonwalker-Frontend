@@ -8,7 +8,6 @@ const FONT = 'Georgia, serif';
 const MONO = '"Courier New", Courier, monospace';
 const ACCENT_COLOR = '#FF8C00';
 
-// ─── Theme Hook ───────────────────────────────────────────────────────────────
 
 function useTheme() {
     const [isDark, setIsDark] = useState<boolean>(() => {
@@ -36,7 +35,6 @@ function useTheme() {
     return isDark;
 }
 
-// ─── Data for the Bento Grid ──────────────────────────────────────────────────
 
 const BENTO_ITEMS = [
     {
@@ -45,7 +43,6 @@ const BENTO_ITEMS = [
         year: '1982',
         excerpt: 'The album that broke all barriers and became the highest-selling record in human history.',
         image: 'https://i.pinimg.com/originals/fb/4d/fd/fb4dfd4e2c955ca3716e6f804043f0dc.gif',
-        // image: 'https://images.unsplash.com/photo-1598387181032-a3103a2db5b3?q=80&w=1000&auto=format&fit=crop', // Replace with Thriller era image
         gridClass: 'md:col-span-2 md:row-span-1 min-h-[350px]' // Wide box
     },
     {
@@ -54,7 +51,6 @@ const BENTO_ITEMS = [
         year: '1983',
         excerpt: 'One televised step that became the most imitated dance move ever.',
         image: 'https://i.pinimg.com/736x/a5/25/d5/a525d5da6d17005ef0c21dd8f2dbd4e2.jpg',
-        // image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1000&auto=format&fit=crop', // Replace with Motown 25 image
         gridClass: 'md:col-span-1 md:row-span-2 min-h-[350px] md:min-h-full' // Tall box
     },
     {
@@ -63,7 +59,6 @@ const BENTO_ITEMS = [
         year: '1987',
         excerpt: 'Edgier, sharper, and producing a record five consecutive #1 Billboard hits.',
         image: 'https://i.pinimg.com/1200x/98/3a/54/983a5425462a73028421d5a9e4e97181.jpg',
-        // image: 'https://images.unsplash.com/photo-1493225457124-a1a2a44b05ae?q=80&w=1000&auto=format&fit=crop', // Replace with Bad era image
         gridClass: 'md:col-span-1 md:row-span-1 min-h-[300px]' // Square box
     },
     {   
@@ -72,12 +67,10 @@ const BENTO_ITEMS = [
         year: '1992',
         excerpt: 'A breathtaking spectacle that donated 100% of its profits to charity.',
         image: 'https://i.pinimg.com/736x/39/e4/18/39e418e97880a073d9fe8068d82452dc.jpg',
-        // image: 'https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=1000&auto=format&fit=crop', // Replace with Dangerous era image
         gridClass: 'md:col-span-1 md:row-span-1 min-h-[300px]' // Square box
     }
 ];
 
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function TheLegacyBento() {
     const isDark = useTheme();

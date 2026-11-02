@@ -1,6 +1,5 @@
 /* ==========================================================================
-   FULL IMMERSIVE HALLOWEEN "THRILLER NIGHT" THEME
-   Strictly scoped under .halloween-active to guarantee full reversibility.
+   FULL IMMERSIVE HALLOWEEN THRILLER NIGHT THEME
    ========================================================================== */
 
 .halloween-active {
@@ -77,7 +76,6 @@
 .halloween-active [role="navigation"] * {
   border-color: inherit;
 }
-
 
 /* ── 5. Eerie Headings & Text Shadows ───────────────────────────────────── */
 .halloween-active h1,

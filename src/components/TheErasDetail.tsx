@@ -8,7 +8,6 @@ const FONT = 'Georgia, serif';
 const MONO = '"Courier New", Courier, monospace';
 const ACCENT_COLOR = '#FF8C00';
 
-// ─── Theme Hook ───────────────────────────────────────────────────────────────
 
 function useTheme() {
     const [isDark, setIsDark] = useState<boolean>(() => {
@@ -27,7 +26,6 @@ function useTheme() {
     return isDark;
 }
 
-// ─── Full Massive Data Structure ──────────────────────────────────────────────
 
 export interface LegacyDetail {
     name: string;
@@ -240,7 +238,6 @@ export const legacyItems: LegacyItem[] = [
     }
 ];
 
-// ─── Main Detail Page Component ───────────────────────────────────────────────
 
 export default function LegacyShowcaseDetail() {
     const isDark = useTheme();

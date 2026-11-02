@@ -27,7 +27,7 @@ const navItems: NavItem[] = [
         ],
     },
     {
-        label: 'Family Tree',
+        label: 'Family',
         href: '/family',
         children: [
             { label: 'Katherine Jackson', href: '/family/katherine' },
@@ -120,7 +120,6 @@ export default function Navbar() {
         setMobileOpen(false);
     };
 
-    // ─── Theme-aware color tokens (Vintage Editorial Palette) ──────────────
     const navTextColor = isDark ? '#FFFFFF' : '#111111';
     const navBg = scrolled
         ? isDark ? 'rgba(10, 10, 10, 0.97)' : 'rgba(255, 255, 255, 0.97)'

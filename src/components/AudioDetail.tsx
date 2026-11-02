@@ -11,7 +11,6 @@ const MONO  = '"Courier New", Courier, monospace';
 const GREEN = '#1DB954';
 const DIM   = 'rgba(255,255,255,0.75)';
 
-/* ─── Helpers ────────────────────────────────────────────────────────────── */
 function formatDuration(seconds?: number): string {
     if (!seconds) return '';
     const m = Math.floor(seconds / 60);
@@ -42,7 +41,6 @@ function getSpotifyOpenUrl(post: IPost | null): string | null {
     return null;
 }
 
-/* ─── Queue Item ─────────────────────────────────────────────────────────── */
 function QueueItem({
     post, index, isActive, onSelect,
 }: {
@@ -86,7 +84,6 @@ function QueueItem({
     );
 }
 
-/* ─── Related Sidebar Card ───────────────────────────────────────────────── */
 function RelatedCard({ post, isActive, onSelect }: {
     post: IPost; isActive: boolean; onSelect: () => void;
 }) {
@@ -123,7 +120,6 @@ function RelatedCard({ post, isActive, onSelect }: {
     );
 }
 
-/* ─── Main Page ──────────────────────────────────────────────────────────── */
 export default function AudioDetail() {
     const { slug } = useParams<{ slug: string }>();
     const navigate  = useNavigate();

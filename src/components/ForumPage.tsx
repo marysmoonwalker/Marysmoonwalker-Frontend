@@ -32,7 +32,6 @@ const categories = [
   { id: 'Tribute', label: 'Tribute' },
 ];
 
-// ─── Theme Hook ───────────────────────────────────────────────────────────────
 
 function useTheme() {
     const [isDark, setIsDark] = useState<boolean>(() => {
@@ -60,7 +59,6 @@ function useTheme() {
     return isDark;
 }
 
-// ─── Main Forum Component ─────────────────────────────────────────────────────
 
 export default function ForumPage() {
   const isDark = useTheme();

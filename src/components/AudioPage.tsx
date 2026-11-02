@@ -7,7 +7,6 @@ const ACCENT = '#FF8C00';
 const FONT   = 'Georgia, serif';
 const MONO   = '"Courier New", Courier, monospace';
 
-/* ─── Helpers ────────────────────────────────────────────────────────────── */
 function formatDuration(seconds?: number): string {
     if (!seconds) return '';
     const h = Math.floor(seconds / 3600);
@@ -38,7 +37,6 @@ function getSpotifyEmbed(post: IPost): string | null {
     return null;
 }
 
-/* ─── Floating Mini Player ───────────────────────────────────────────────── */
 function MiniPlayer({ post, onClose }: { post: IPost; onClose: () => void }) {
     const embedUrl = getSpotifyEmbed(post);
     const [visible, setVisible] = useState(false);
@@ -112,7 +110,6 @@ function MiniPlayer({ post, onClose }: { post: IPost; onClose: () => void }) {
     );
 }
 
-/* ─── Small Horizontal Card ──────────────────────────────────────────────── */
 function TrackCard({ post, onPlay }: { post: IPost; onPlay: (post: IPost) => void }) {
     const duration = formatDuration(post.duration);
     return (
@@ -147,7 +144,6 @@ function TrackCard({ post, onPlay }: { post: IPost; onPlay: (post: IPost) => voi
     );
 }
 
-/* ─── Quick Pick Tile ────────────────────────────────────────────────────── */
 function QuickTile({ post, onPlay }: { post: IPost; onPlay: (post: IPost) => void }) {
     return (
         <Link
@@ -174,7 +170,6 @@ function QuickTile({ post, onPlay }: { post: IPost; onPlay: (post: IPost) => voi
     );
 }
 
-/* ─── Hero Feature Card ──────────────────────────────────────────────────── */
 function HeroCard({ post, onPlay }: { post: IPost; onPlay: (post: IPost) => void }) {
     const duration = formatDuration(post.duration);
     return (
@@ -216,7 +211,6 @@ function HeroCard({ post, onPlay }: { post: IPost; onPlay: (post: IPost) => void
     );
 }
 
-/* ─── Horizontal Scroll Row ─────────────────────────────────────────────── */
 function ScrollRow({ title, posts, catId, onPlay }: {
     title: string; posts: IPost[]; catId?: string; onPlay: (post: IPost) => void;
 }) {
@@ -247,7 +241,6 @@ function ScrollRow({ title, posts, catId, onPlay }: {
     );
 }
 
-/* ─── Search Results Grid ────────────────────────────────────────────────── */
 function SearchGrid({ posts, loading, hasMore, lastRef, onPlay }: {
     posts: IPost[]; loading: boolean; hasMore: boolean;
     lastRef: (node: HTMLDivElement | null) => void;
@@ -272,7 +265,6 @@ function SearchGrid({ posts, loading, hasMore, lastRef, onPlay }: {
     );
 }
 
-/* ─── Main Page ──────────────────────────────────────────────────────────── */
 export default function AudioPage() {
     const [allPosts,      setAllPosts]      = useState<IPost[]>([]);
     const [categories,    setCategories]    = useState<ICategory[]>([]);
