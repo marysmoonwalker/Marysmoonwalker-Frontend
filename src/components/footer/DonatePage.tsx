@@ -40,21 +40,21 @@ const cryptoWallets = [
         name: 'Bitcoin', 
         symbol: 'BTC', 
         network: 'Bitcoin Network', 
-        address: '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa' // Replace with your real BTC address
+        address: '18jqgwFAjFu5KmTSzAwVkE7yHMS2gTvnwL'
     },
     { 
         id: 'eth', 
         name: 'Ethereum', 
         symbol: 'ETH', 
         network: 'ERC-20', 
-        address: '0x71C7656EC7ab88b098defB751B7401B5f6d8976F' // Replace with your real ETH address
+        address: '0x2cad8260af7ccf80698563d518fd66556884ead2'
     },
     { 
         id: 'usdt', 
         name: 'Tether', 
         symbol: 'USDT', 
-        network: 'BEP-20 (BSC)', 
-        address: '0x55d398326f99059fF775485246999027B3197955' // Replace with your real USDT address
+        network: 'ERC-20 / BEP-20', 
+        address: '0x2cad8260af7ccf80698563d518fd66556884ead2'
     }
 ];
 

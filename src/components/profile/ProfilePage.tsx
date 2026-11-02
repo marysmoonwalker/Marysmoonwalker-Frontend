@@ -153,15 +153,20 @@ export default function ProfilePage() {
         e.preventDefault();
         try {
             setIsUpdatingProfile(true);
-            await AuthService.updateProfile({ fullName, username });
+            await AuthService.updateProfile({ fullName: fullName.trim(), username: username.trim().toLowerCase() });
             const res = await AuthService.getProfile();
             setUser(res.data);
             setProfileMsg({ text: 'Profile updated', type: 'success' });
-        } catch {
-            setProfileMsg({ text: 'Update failed', type: 'error' });
+        } catch (err: any) {
+            console.error('Error updating profile:', err);
+            let msg = err?.response?.data?.message || err?.message || 'Update failed';
+            if (msg.includes('E11000') || msg.toLowerCase().includes('duplicate key') || msg.toLowerCase().includes('username_1')) {
+                msg = 'Username is already taken. Please choose another.';
+            }
+            setProfileMsg({ text: msg, type: 'error' });
         } finally {
             setIsUpdatingProfile(false);
-            setTimeout(() => setProfileMsg({ text: '', type: '' }), 3000);
+            setTimeout(() => setProfileMsg({ text: '', type: '' }), 4000);
         }
     };
 
@@ -229,7 +234,7 @@ export default function ProfilePage() {
                     {/* Identity Info */}
                     <div className="flex flex-col items-center md:items-start text-center md:text-left flex-1">
                         <span className="text-[10px] font-bold uppercase tracking-[0.3em] mb-4" style={{ fontFamily: MONO, color: ACCENT_COLOR }}>
-                            Patron Dossier
+                            User Profile
                         </span>
                         <h1 className="text-4xl md:text-5xl font-normal leading-tight mb-2" style={{ fontFamily: FONT, color: textColor }}>
                             {user.fullName || user.username}
